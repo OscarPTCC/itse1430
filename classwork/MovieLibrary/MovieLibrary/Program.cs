@@ -375,6 +375,11 @@ namespace MovieLibrary
             //locale - Windows cultural settings
             var ordinalCompare = String.Compare("Hello", "hello", StringComparison.OrdinalIgnoreCase) == 0; //Case insensitive, ordinal (keys, paths)
 
+
+            //Case Conversion - Don't do this
+            var toUpper = "Hello".ToUpper(); // HELLO ToUpper -> string
+            var toLower = "Hello".ToLower(); // hello ToLower -> string
+
             // trim and padding
             var areSpacesEqual = "" == " ";
             var name = "   Bob   ";
