@@ -14,7 +14,6 @@ namespace Budget
         {
             Console.WriteLine("Budget program developed by Oscar Peinado. ");
 
-
             Console.WriteLine("Please input account nickname: ");
 
             accountName = ReadString(true);
@@ -36,7 +35,8 @@ namespace Budget
             {
                 string value = Console.ReadLine();
 
-              // if (int)
+                //if (int.TryParse(value, out int result)
+                //    return value;
             } while (true);
         }
 
