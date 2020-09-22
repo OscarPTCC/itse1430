@@ -20,23 +20,67 @@ namespace Budget
 
             Console.WriteLine("Please input account number: ");
 
-            accountNumber = isDigitOnly(true);
+            accountNumber = ReadString(true);
 
             Console.WriteLine("Please input starting balance: ");
 
             accountBalance = ReadInt32(0);
 
-
+            DisplayMenu();
         }
 
-        static string isDigitOnly ( bool required )
+        static void QuitApp ()
+        {
+            
+            do
+            {
+                Console.WriteLine("Are you sure? (Y/N)");
+
+                string option = Console.ReadLine();
+
+                if (String.Compare(option, "Y", true) == 0)
+                    return;
+                else if (String.Compare(option, "Y", true) == 0)
+                    DisplayMenu();
+                else
+                    DisplayError("Invalid Option");
+            } while (true);
+        }
+
+        private static void AccountInformation ()
+        {
+            Console.WriteLine("");
+
+            Console.WriteLine("Name\t\tAccount Number\t\tBalance");
+
+            Console.WriteLine("".PadLeft(60, '-'));
+
+            var message = $"{accountName}\t\t{accountNumber}\t\t\t{accountBalance}";
+
+            Console.WriteLine(message);
+
+            DisplayMenu();
+        }
+
+        static char DisplayMenu ()
         {
             do
             {
+                Console.WriteLine("");
+                Console.WriteLine("Main Menu");
+                Console.WriteLine("".PadLeft(40, '-'));
+
+                Console.WriteLine("A)ccount Information");
+                Console.WriteLine("Q)uit");
+
                 string value = Console.ReadLine();
 
-                //if (int.TryParse(value, out int result)
-                //    return value;
+                if (String.Compare(value, "Q", true) == 0)
+                    QuitApp();
+                else if (String.Compare(value, "A", true) == 0)
+                    AccountInformation();
+
+                DisplayError("Invalid option");
             } while (true);
         }
 
