@@ -221,7 +221,7 @@ namespace Budget
                     return result;
 
                 if (minimumValue != Int32.MinValue)
-                    DisplayError("Value must be greater than " + minimumValue);
+                    DisplayError("Value is required and must be greater than " + minimumValue);
                 else
                     DisplayError("Must be integral value");
             } while (true);
