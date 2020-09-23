@@ -10,7 +10,12 @@ namespace Budget
 {
     class Program
     {
-        static void Main ( string[] args )
+        static string accountName = "";
+        static string accountNumber = "";
+        static decimal accountBalance = 0;
+        static int parsedAccountNumber = 0;
+
+        static int Main ( string[] args )
         {
             Console.WriteLine("Budget program developed by Oscar Peinado. ");
 
@@ -20,18 +25,86 @@ namespace Budget
 
             Console.WriteLine("Please input account number: ");
 
-            accountNumber = ReadString(true);
+            parsedAccountNumber = ParseString(true);
 
             Console.WriteLine("Please input starting balance: ");
 
             accountBalance = ReadInt32(0);
+            do
+            {
+                switch (DisplayMenu())
+                {
+                    case 'A': AccountInformation(); break;
 
-            DisplayMenu();
+                    case 'Q': QuitApp(); break;
+
+                    case 'D': DepositIncome(); break;
+                }
+            } while (true);
         }
 
-        static void QuitApp ()
+        private static int ParseString ( bool required )
         {
-            
+            do
+            {
+                string accountNumber = Console.ReadLine();
+
+                if (!required || accountNumber != "")
+                    if (Int32.TryParse(accountNumber, out parsedAccountNumber))
+                        return parsedAccountNumber;
+
+                DisplayError("Value is required and it must be a numeric value.");
+            } while (true);
+        }
+
+        private static void DepositIncome ()
+        {
+            Console.WriteLine("Input deposit amount: ");
+            do
+            {
+                string value = ReadString(true);
+
+                if (Decimal.TryParse(value, out decimal amount))
+                {
+                    while (amount < 1)
+                    {
+                        DisplayError("Value must be more than 0");
+
+                        amount = ReadInt32(0);
+                    }
+
+                    accountBalance = accountBalance + amount;
+
+                    Console.WriteLine("Description for deposited value.");
+
+                    string description = ReadString(true);
+
+                    Console.WriteLine("Category of deposited value.");
+
+                    string category = ReadString(false);
+
+                    Console.WriteLine("Date deposited: ");
+
+                    var todaysDate = getDate();
+
+                    Console.WriteLine(todaysDate);
+
+                    Console.WriteLine("Value successfully added to your account!");
+
+                    return;
+                } else
+                    DisplayError("Please input a numeric value");
+
+            } while (true);
+        }
+
+        private static object getDate ()
+        {
+            return DateTime.Today;
+        }
+
+        private static void QuitApp ()
+        {
             do
             {
                 Console.WriteLine("Are you sure? (Y/N)");
@@ -39,10 +112,10 @@ namespace Budget
                 string option = Console.ReadLine();
 
                 if (String.Compare(option, "Y", true) == 0)
+                    Environment.Exit(0);
+                else if (String.Compare(option, "N", true) == 0)
                     return;
-                else if (String.Compare(option, "Y", true) == 0)
-                    DisplayMenu();
-                else
+                else if (option != "Y" && option != "N" && option != "y" && option != "n")
                     DisplayError("Invalid Option");
             } while (true);
         }
@@ -55,11 +128,9 @@ namespace Budget
 
             Console.WriteLine("".PadLeft(60, '-'));
 
-            var message = $"{accountName}\t\t{accountNumber}\t\t\t{accountBalance}";
+            var message = $"{accountName}\t\t{parsedAccountNumber}\t\t\t{accountBalance}";
 
             Console.WriteLine(message);
-
-            DisplayMenu();
         }
 
         static char DisplayMenu ()
@@ -71,16 +142,21 @@ namespace Budget
                 Console.WriteLine("".PadLeft(40, '-'));
 
                 Console.WriteLine("A)ccount Information");
+                Console.WriteLine("D)eposit");
+                Console.WriteLine("W)ithdraw");
                 Console.WriteLine("Q)uit");
+
 
                 string value = Console.ReadLine();
 
                 if (String.Compare(value, "Q", true) == 0)
-                    QuitApp();
+                    return 'Q';
                 else if (String.Compare(value, "A", true) == 0)
-                    AccountInformation();
-
-                DisplayError("Invalid option");
+                    return 'A';
+                else if (String.Compare(value, "D", true) == 0)
+                    return 'D';
+                else
+                    DisplayError("Invalid option");
             } while (true);
         }
 
@@ -104,10 +180,6 @@ namespace Budget
                     DisplayError("Must be integral value");
             } while (true);
         }
-
-        static string accountName = "";
-        static string accountNumber = "";
-        static decimal accountBalance = 0;
 
         static string ReadString ( bool required )
         {
