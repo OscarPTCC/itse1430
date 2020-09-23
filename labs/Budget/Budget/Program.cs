@@ -39,7 +39,50 @@ namespace Budget
                     case 'Q': QuitApp(); break;
 
                     case 'D': DepositIncome(); break;
+
+                    case 'W': WithdrawAccount(); break;
                 }
+            } while (true);
+        }
+
+        private static void WithdrawAccount ()
+        {
+            Console.WriteLine("Input withdrawal amount: ");
+
+            do
+            {
+                string value = ReadString(true);
+
+                if (Decimal.TryParse(value, out decimal amount))
+                {
+                    while (amount < 1 || amount > accountBalance)
+                    {
+                        DisplayError("Amount must not exceed balance or be less than 1!");
+
+                        amount = ReadInt32(0);
+                    }
+
+                    accountBalance = accountBalance - amount;
+
+                    Console.WriteLine("Description for deposited value.");
+
+                    string description = ReadString(true);
+
+                    Console.WriteLine("Category of deposited value.");
+
+                    string category = ReadString(false);
+
+                    Console.WriteLine("Date deposited: ");
+
+                    var todaysDate = getDate();
+
+                    Console.WriteLine(todaysDate);
+
+                    Console.WriteLine("Value successfully withdrawn from your account!");
+
+                    return;
+                } else
+                    DisplayError("Please input a numeric value.");
             } while (true);
         }
 
@@ -60,6 +103,7 @@ namespace Budget
         private static void DepositIncome ()
         {
             Console.WriteLine("Input deposit amount: ");
+
             do
             {
                 string value = ReadString(true);
@@ -68,7 +112,7 @@ namespace Budget
                 {
                     while (amount < 1)
                     {
-                        DisplayError("Value must be more than 0");
+                        DisplayError("Value must be more than 0!");
 
                         amount = ReadInt32(0);
                     }
@@ -93,7 +137,7 @@ namespace Budget
 
                     return;
                 } else
-                    DisplayError("Please input a numeric value");
+                    DisplayError("Please input a numeric value.");
 
             } while (true);
         }
@@ -155,6 +199,8 @@ namespace Budget
                     return 'A';
                 else if (String.Compare(value, "D", true) == 0)
                     return 'D';
+                else if (String.Compare(value, "W", true) == 0)
+                    return 'W';
                 else
                     DisplayError("Invalid option");
             } while (true);
