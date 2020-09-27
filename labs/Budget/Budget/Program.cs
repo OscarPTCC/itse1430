@@ -234,7 +234,5 @@ namespace Budget
 
             Console.ResetColor();
         }
-
-
     }
 }
