@@ -10,26 +10,21 @@ namespace Budget
 {
     class Program
     {
-        static string accountName = "";
-        static string accountNumber = "";
-        static decimal accountBalance = 0;
-        static int parsedAccountNumber = 0;
-
         static int Main ( string[] args )
         {
             Console.WriteLine("Budget program developed by Oscar Peinado. ");
 
             Console.WriteLine("Please input account nickname: ");
 
-            accountName = ReadString(true);
+            AccountName = ReadString(true);
 
             Console.WriteLine("Please input account number: ");
 
-            parsedAccountNumber = ParseString(true);
+            AccountNumber = ParseString(true);
 
             Console.WriteLine("Please input starting balance: ");
 
-            accountBalance = ReadInt32(0);
+            AccountBalance = ReadInt32(0);
             do
             {
                 switch (DisplayMenu())
@@ -44,6 +39,9 @@ namespace Budget
                 }
             } while (true);
         }
+        static string AccountName = "";
+        static string AccountNumber = "";
+        static decimal AccountBalance = 0;
 
         private static void WithdrawAccount ()
         {
@@ -55,28 +53,24 @@ namespace Budget
 
                 if (Decimal.TryParse(value, out decimal amount))
                 {
-                    while (amount < 1 || amount > accountBalance)
+                    while (amount < 1 || amount > AccountBalance)
                     {
                         DisplayError("Amount must not exceed balance or be less than 1!");
 
                         amount = ReadInt32(0);
                     }
 
-                    accountBalance = accountBalance - amount;
+                    AccountBalance = AccountBalance - amount;
 
-                    Console.WriteLine("Description for deposited value.");
+                    Console.WriteLine("Description for withdrawn value.");
 
                     string description = ReadString(true);
 
-                    Console.WriteLine("Category of deposited value.");
+                    Console.WriteLine("Category of withrawn value.");
 
                     string category = ReadString(false);
 
-                    Console.WriteLine("Date deposited: ");
-
-                    var todaysDate = getDate();
-
-                    Console.WriteLine(todaysDate);
+                    Console.WriteLine("Date deposited: " + DateTime.Today);
 
                     Console.WriteLine("Value successfully withdrawn from your account!");
 
@@ -86,15 +80,15 @@ namespace Budget
             } while (true);
         }
 
-        private static int ParseString ( bool required )
+        private static string ParseString ( bool required )
         {
             do
             {
-                string accountNumber = Console.ReadLine();
+                string AccountNumber = Console.ReadLine();
 
-                if (!required || accountNumber != "")
-                    if (Int32.TryParse(accountNumber, out parsedAccountNumber))
-                        return parsedAccountNumber;
+                if (!required || AccountNumber != "")
+                    if (Int32.TryParse(AccountNumber, out int result))
+                        return AccountNumber;
 
                 DisplayError("Value is required and it must be a numeric value.");
             } while (true);
@@ -117,7 +111,7 @@ namespace Budget
                         amount = ReadInt32(0);
                     }
 
-                    accountBalance = accountBalance + amount;
+                    AccountBalance = AccountBalance + amount;
 
                     Console.WriteLine("Description for deposited value.");
 
@@ -127,11 +121,7 @@ namespace Budget
 
                     string category = ReadString(false);
 
-                    Console.WriteLine("Date deposited: ");
-
-                    var todaysDate = getDate();
-
-                    Console.WriteLine(todaysDate);
+                    Console.WriteLine("Date deposited: " + DateTime.Today);
 
                     Console.WriteLine("Value successfully added to your account!");
 
@@ -140,11 +130,6 @@ namespace Budget
                     DisplayError("Please input a numeric value.");
 
             } while (true);
-        }
-
-        private static object getDate ()
-        {
-            return DateTime.Today;
         }
 
         private static void QuitApp ()
@@ -172,7 +157,7 @@ namespace Budget
 
             Console.WriteLine("".PadLeft(60, '-'));
 
-            var message = $"{accountName}\t\t{parsedAccountNumber}\t\t\t{accountBalance}";
+            var message = $"{AccountName}\t\t{AccountNumber}\t\t\t{AccountBalance}";
 
             Console.WriteLine(message);
         }
