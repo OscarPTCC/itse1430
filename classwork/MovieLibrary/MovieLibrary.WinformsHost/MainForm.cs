@@ -21,8 +21,15 @@ namespace MovieLibrary.WinformsHost
             movie.Name = "Jaws";
             //var str = movie.Description;
 
+            toolStripMenuItem5.Click += OnMovieAdd;
         }
 
+        private void OnMovieAdd( object sender, EventArgs e)
+        {
+            var form = new MovieForm();
+
+            form.ShowDialog();
+        }
     }
 }
 
