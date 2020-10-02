@@ -25,14 +25,14 @@ namespace MovieLibrary
     public class Movie
     {
         //Data - data to store
-        //fields - where the data is stored
+        //fields - where the data is stored, identical to variables
         //Named as nouns, no abbreviation and no generic names
 
-        public string Name;
-        public string Description;
-        public string Rating;
-        public int RunLength;
-        public bool IsClassic;
+        public string Name = "";
+        public string Description = "";
+        public string Rating = "";
+        public int RunLength; // = 0;
+        public bool IsClassic; // = false;
 
         //Functionality - functions you want to expose
     }
