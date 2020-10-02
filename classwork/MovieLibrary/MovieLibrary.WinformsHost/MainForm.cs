@@ -9,8 +9,26 @@ namespace MovieLibrary.WinformsHost
         {
             InitializeComponent();
 
+            //Type = Movie
+            //Variable = movie
+            //Value = Instance (or an object)
             Movie movie;
+            movie = new Movie();
+
+            //var movie2 = new Movie();
+
+            //member access operator ::= E . M
+            movie.Name = "Jaws";
+            //var str = movie.Description;
+
         }
 
     }
 }
+
+//namespace OtherNamespace
+//{
+//  public class Mainform
+//  {
+//  }
+//}
