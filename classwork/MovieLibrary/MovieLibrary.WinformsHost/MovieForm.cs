@@ -42,9 +42,8 @@ namespace MovieLibrary.WinformsHost
             movie.RunLength = ReadInt32(_txtRunLength);
             movie.ReleaseYear = ReadInt32(_txtReleaseYear);
 
-            var error = movie.Validate();
-
             //TODO: Fix validation
+            var error = movie.Validate();
             if (!String.IsNullOrEmpty(error))
             {
                 //Show error message - use for standard messages
