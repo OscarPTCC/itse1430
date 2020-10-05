@@ -31,6 +31,9 @@ namespace MovieLibrary.WinformsHost
             Close();
         }
 
+        //Event handler - handles an event
+        // This method handles the save button clicking event
+        //   void identifier ( object sender, EvenArgs e )
         private void OnSave ( object sender, EventArgs e )
         {
             var movie = new Movie();

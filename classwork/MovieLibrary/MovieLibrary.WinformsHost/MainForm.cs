@@ -25,6 +25,8 @@ namespace MovieLibrary.WinformsHost
             toolStripMenuItem7.Click += OnMovieDelete;
         }
 
+        //Event - a notification to interested parties that something has something has happened
+
         private void OnMovieAdd ( object sender, EventArgs e )
         {
             var form = new MovieForm();
