@@ -21,6 +21,9 @@ namespace MovieLibrary.WinformsHost
             movie.Name = "Jaws";
             //var str = movie.Description;
 
+            //hooks up an event handler to an event
+            // Event += method
+            //Event -= method
             toolStripMenuItem5.Click += OnMovieAdd;
             toolStripMenuItem7.Click += OnMovieDelete;
         }

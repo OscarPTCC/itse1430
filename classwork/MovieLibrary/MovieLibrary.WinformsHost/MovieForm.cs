@@ -36,6 +36,13 @@ namespace MovieLibrary.WinformsHost
         //   void identifier ( object sender, EvenArgs e )
         private void OnSave ( object sender, EventArgs e )
         {
+            // I want the button that was clicked
+            //Type Casting
+            // WRONG: var button = (button)sender; // C-style cast - crashes if wrong
+            // CORRECT: var button = sender as Button; // as operator - always safe returns typed version or null
+            //if (button == null)
+            //  return;
+
             var movie = new Movie();
             movie.Name = _txtName.Text;
             movie.Description = _txtDescription.Text;
