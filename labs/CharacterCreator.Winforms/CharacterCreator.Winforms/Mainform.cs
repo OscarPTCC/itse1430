@@ -15,7 +15,13 @@ namespace CharacterCreator.Winforms
         public Mainform()
         {
             InitializeComponent();
+
+            _menuExit.Click += OnExit;
         }
 
+        private void OnExit (object sender, EventArgs e )
+        {
+            Close();
+        }
     }
 }

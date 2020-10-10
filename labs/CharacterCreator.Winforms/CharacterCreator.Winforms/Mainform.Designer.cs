@@ -50,14 +50,14 @@
             this._menuExit});
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
             this.toolStripMenuItem1.Size = new System.Drawing.Size(37, 20);
-            this.toolStripMenuItem1.Text = "File";
+            this.toolStripMenuItem1.Text = "&File";
             // 
             // _menuExit
             // 
             this._menuExit.Name = "_menuExit";
             this._menuExit.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.F4)));
             this._menuExit.Size = new System.Drawing.Size(135, 22);
-            this._menuExit.Text = "&Exit";
+            this._menuExit.Text = "Exit";
             // 
             // Mainform
             // 
