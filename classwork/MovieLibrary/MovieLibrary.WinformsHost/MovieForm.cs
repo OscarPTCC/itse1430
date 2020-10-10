@@ -8,11 +8,56 @@ using System.Windows.Forms;
 
 namespace MovieLibrary.WinformsHost
 {
+    // class-decalaration ::= [access] [modifiers] class identifier [ : T ]
     public partial class MovieForm : Form
     {
+        //Access: 
+        // Public - accessible in derived type
+        // Protected - accessible in owning type and derived types
+        // Private - only the owning type
+
+        //Methods : properties, methods
+        // Virtual - Base type provides the base implementation but a derived type may override it
+        // Abstract - Base type defines it but does not implement, derived types must override it
+
+        // Syntax for constructors
+        // ctor-decalration ::= [access] T () { S* }
         public MovieForm ()
         {
+            //DO NOT CALL virtual members inside of constructors
             InitializeComponent();
+        }
+
+        public MovieForm (Movie movie) : this(movie, null)
+        {
+            //Movie = movie;
+        }
+
+        //Constructor chaining - calling one constructor from another
+        public MovieForm (Movie movie, string title) : this()
+        {
+            //InitializeComponent();
+
+            Movie = movie;
+            Text = title ?? "Add Movie";
+        }
+
+        public Movie Movie { get; set; }
+
+        //Override indicates to compiler that you are overriding a virtual method
+        protected override void OnLoad ( EventArgs e )
+        {
+            base.OnLoad(e);
+
+            if (Movie != null)
+            {
+                _txtName.Text = Movie.Name;
+                _txtDescription.Text = Movie.Description;
+                _comboRating.SelectedText = Movie.Rating;
+                _chkClassic.Checked = Movie.IsClassic;
+                _txtRunLength.Text = Movie.RunLength.ToString();
+                _txtReleaseYear.Text = Movie.ReleaseYear.ToString();
+            };
         }
 
         private void textBox3_TextChanged ( object sender, EventArgs e )
@@ -62,7 +107,8 @@ namespace MovieLibrary.WinformsHost
                 return;
             };
 
-            //TODO: Return movie
+            // Return movie
+            Movie = movie;
             Close();
         }
         private int ReadInt32 ( Control control )
@@ -74,5 +120,6 @@ namespace MovieLibrary.WinformsHost
 
             return -1;
         }
+
     }
 }
