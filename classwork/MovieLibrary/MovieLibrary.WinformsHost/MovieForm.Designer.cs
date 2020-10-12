@@ -45,6 +45,8 @@
             // 
             // _txtName
             // 
+            this._txtName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this._txtName.Location = new System.Drawing.Point(89, 44);
             this._txtName.Name = "_txtName";
             this._txtName.Size = new System.Drawing.Size(193, 23);
@@ -61,6 +63,9 @@
             // 
             // _txtDescription
             // 
+            this._txtDescription.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this._txtDescription.Location = new System.Drawing.Point(89, 82);
             this._txtDescription.Multiline = true;
             this._txtDescription.Name = "_txtDescription";
@@ -79,6 +84,7 @@
             // 
             // label3
             // 
+            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(15, 206);
             this.label3.Name = "label3";
@@ -88,6 +94,7 @@
             // 
             // _txtRunLength
             // 
+            this._txtRunLength.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this._txtRunLength.Location = new System.Drawing.Point(89, 203);
             this._txtRunLength.Name = "_txtRunLength";
             this._txtRunLength.Size = new System.Drawing.Size(78, 23);
@@ -96,6 +103,7 @@
             // 
             // _btnCancel
             // 
+            this._btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this._btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this._btnCancel.Location = new System.Drawing.Point(250, 376);
             this._btnCancel.Name = "_btnCancel";
@@ -107,6 +115,7 @@
             // 
             // _btnSave
             // 
+            this._btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this._btnSave.DialogResult = System.Windows.Forms.DialogResult.OK;
             this._btnSave.Location = new System.Drawing.Point(169, 375);
             this._btnSave.Name = "_btnSave";
@@ -118,6 +127,7 @@
             // 
             // _chkClassic
             // 
+            this._chkClassic.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this._chkClassic.AutoSize = true;
             this._chkClassic.Location = new System.Drawing.Point(89, 284);
             this._chkClassic.Name = "_chkClassic";
@@ -128,6 +138,7 @@
             // 
             // _comboRating
             // 
+            this._comboRating.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this._comboRating.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this._comboRating.FormattingEnabled = true;
             this._comboRating.Items.AddRange(new object[] {
@@ -142,6 +153,7 @@
             // 
             // label4
             // 
+            this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(42, 245);
             this.label4.Name = "label4";
@@ -151,6 +163,7 @@
             // 
             // label5
             // 
+            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(12, 324);
             this.label5.Name = "label5";
@@ -160,6 +173,7 @@
             // 
             // _txtReleaseYear
             // 
+            this._txtReleaseYear.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this._txtReleaseYear.Location = new System.Drawing.Point(89, 321);
             this._txtReleaseYear.Name = "_txtReleaseYear";
             this._txtReleaseYear.Size = new System.Drawing.Size(78, 23);
@@ -188,9 +202,11 @@
             this.Controls.Add(this._txtName);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
+            this.MinimumSize = new System.Drawing.Size(358, 450);
             this.Name = "MovieForm";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Add Movie";
             this.ResumeLayout(false);
             this.PerformLayout();
