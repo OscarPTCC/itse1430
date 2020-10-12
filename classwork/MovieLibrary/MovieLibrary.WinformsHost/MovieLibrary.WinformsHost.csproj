@@ -4,6 +4,9 @@
     <OutputType>WinExe</OutputType>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <UseWindowsForms>true</UseWindowsForms>
+    <Company>Oscar Peinado-Rojo</Company>
+    <Product>Movie Library</Product>
+    <Authors>Oscar Peinado-Rojo</Authors>
   </PropertyGroup>
 
   <ItemGroup>

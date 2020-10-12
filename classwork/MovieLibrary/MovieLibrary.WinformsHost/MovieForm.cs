@@ -121,5 +121,9 @@ namespace MovieLibrary.WinformsHost
             return -1;
         }
 
+        private void _txtReleaseYear_TextChanged ( object sender, EventArgs e )
+        {
+
+        }
     }
 }

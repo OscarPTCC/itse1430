@@ -45,15 +45,15 @@
             // 
             // _txtName
             // 
-            this._txtName.Location = new System.Drawing.Point(176, 44);
+            this._txtName.Location = new System.Drawing.Point(89, 44);
             this._txtName.Name = "_txtName";
             this._txtName.Size = new System.Drawing.Size(193, 23);
-            this._txtName.TabIndex = 0;
+            this._txtName.TabIndex = 8;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(71, 44);
+            this.label1.Location = new System.Drawing.Point(44, 47);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(39, 15);
             this.label1.TabIndex = 1;
@@ -61,16 +61,16 @@
             // 
             // _txtDescription
             // 
-            this._txtDescription.Location = new System.Drawing.Point(175, 98);
+            this._txtDescription.Location = new System.Drawing.Point(89, 82);
             this._txtDescription.Multiline = true;
             this._txtDescription.Name = "_txtDescription";
             this._txtDescription.Size = new System.Drawing.Size(193, 111);
-            this._txtDescription.TabIndex = 2;
+            this._txtDescription.TabIndex = 9;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(71, 101);
+            this.label2.Location = new System.Drawing.Point(16, 85);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(67, 15);
             this.label2.TabIndex = 3;
@@ -80,7 +80,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(71, 245);
+            this.label3.Location = new System.Drawing.Point(15, 206);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(68, 15);
             this.label3.TabIndex = 4;
@@ -88,19 +88,19 @@
             // 
             // _txtRunLength
             // 
-            this._txtRunLength.Location = new System.Drawing.Point(176, 237);
+            this._txtRunLength.Location = new System.Drawing.Point(89, 203);
             this._txtRunLength.Name = "_txtRunLength";
-            this._txtRunLength.Size = new System.Drawing.Size(100, 23);
-            this._txtRunLength.TabIndex = 5;
+            this._txtRunLength.Size = new System.Drawing.Size(78, 23);
+            this._txtRunLength.TabIndex = 10;
             this._txtRunLength.TextChanged += new System.EventHandler(this.textBox3_TextChanged);
             // 
             // _btnCancel
             // 
             this._btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this._btnCancel.Location = new System.Drawing.Point(657, 375);
+            this._btnCancel.Location = new System.Drawing.Point(250, 376);
             this._btnCancel.Name = "_btnCancel";
             this._btnCancel.Size = new System.Drawing.Size(75, 23);
-            this._btnCancel.TabIndex = 6;
+            this._btnCancel.TabIndex = 7;
             this._btnCancel.Text = "Cancel";
             this._btnCancel.UseVisualStyleBackColor = true;
             this._btnCancel.Click += new System.EventHandler(this.OnCancel);
@@ -108,10 +108,10 @@
             // _btnSave
             // 
             this._btnSave.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this._btnSave.Location = new System.Drawing.Point(543, 375);
+            this._btnSave.Location = new System.Drawing.Point(169, 375);
             this._btnSave.Name = "_btnSave";
             this._btnSave.Size = new System.Drawing.Size(75, 23);
-            this._btnSave.TabIndex = 7;
+            this._btnSave.TabIndex = 15;
             this._btnSave.Text = "Save";
             this._btnSave.UseVisualStyleBackColor = true;
             this._btnSave.Click += new System.EventHandler(this.OnSave);
@@ -119,10 +119,10 @@
             // _chkClassic
             // 
             this._chkClassic.AutoSize = true;
-            this._chkClassic.Location = new System.Drawing.Point(176, 293);
+            this._chkClassic.Location = new System.Drawing.Point(89, 284);
             this._chkClassic.Name = "_chkClassic";
             this._chkClassic.Size = new System.Drawing.Size(78, 19);
-            this._chkClassic.TabIndex = 8;
+            this._chkClassic.TabIndex = 12;
             this._chkClassic.Text = "Is Classic?";
             this._chkClassic.UseVisualStyleBackColor = true;
             // 
@@ -135,15 +135,15 @@
             "PG",
             "PG-13",
             "R"});
-            this._comboRating.Location = new System.Drawing.Point(176, 344);
+            this._comboRating.Location = new System.Drawing.Point(89, 242);
             this._comboRating.Name = "_comboRating";
-            this._comboRating.Size = new System.Drawing.Size(121, 23);
-            this._comboRating.TabIndex = 9;
+            this._comboRating.Size = new System.Drawing.Size(98, 23);
+            this._comboRating.TabIndex = 13;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(71, 344);
+            this.label4.Location = new System.Drawing.Point(42, 245);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(41, 15);
             this.label4.TabIndex = 10;
@@ -152,7 +152,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(74, 383);
+            this.label5.Location = new System.Drawing.Point(12, 324);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(71, 15);
             this.label5.TabIndex = 11;
@@ -160,18 +160,19 @@
             // 
             // _txtReleaseYear
             // 
-            this._txtReleaseYear.Location = new System.Drawing.Point(175, 380);
+            this._txtReleaseYear.Location = new System.Drawing.Point(89, 321);
             this._txtReleaseYear.Name = "_txtReleaseYear";
-            this._txtReleaseYear.Size = new System.Drawing.Size(100, 23);
-            this._txtReleaseYear.TabIndex = 12;
+            this._txtReleaseYear.Size = new System.Drawing.Size(78, 23);
+            this._txtReleaseYear.TabIndex = 14;
             this._txtReleaseYear.Text = "1900";
+            this._txtReleaseYear.TextChanged += new System.EventHandler(this._txtReleaseYear_TextChanged);
             // 
             // MovieForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this._btnCancel;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(342, 411);
             this.Controls.Add(this._txtReleaseYear);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
