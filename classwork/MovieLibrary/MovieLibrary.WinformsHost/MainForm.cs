@@ -85,7 +85,7 @@ namespace MovieLibrary.WinformsHost
 
             //TODO: Update movie
             _movie = form.Movie;
-
+             
             MessageBox.Show("Save successful");
         }
     }
