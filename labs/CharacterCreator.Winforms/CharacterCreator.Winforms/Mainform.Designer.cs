@@ -31,6 +31,8 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this._miFile = new System.Windows.Forms.ToolStripMenuItem();
             this._miFileExit = new System.Windows.Forms.ToolStripMenuItem();
+            this._miCharacter = new System.Windows.Forms.ToolStripMenuItem();
+            this._miCharacterNew = new System.Windows.Forms.ToolStripMenuItem();
             this._miHelp = new System.Windows.Forms.ToolStripMenuItem();
             this._miHelpAbout = new System.Windows.Forms.ToolStripMenuItem();
             this.listBox1 = new System.Windows.Forms.ListBox();
@@ -41,6 +43,7 @@
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this._miFile,
+            this._miCharacter,
             this._miHelp});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
@@ -62,6 +65,21 @@
             this._miFileExit.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.F4)));
             this._miFileExit.Size = new System.Drawing.Size(135, 22);
             this._miFileExit.Text = "Exit";
+            // 
+            // _miCharacter
+            // 
+            this._miCharacter.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this._miCharacterNew});
+            this._miCharacter.Name = "_miCharacter";
+            this._miCharacter.Size = new System.Drawing.Size(70, 20);
+            this._miCharacter.Text = "&Character";
+            // 
+            // _miCharacterNew
+            // 
+            this._miCharacterNew.Name = "_miCharacterNew";
+            this._miCharacterNew.ShortcutKeys = System.Windows.Forms.Keys.Insert;
+            this._miCharacterNew.Size = new System.Drawing.Size(120, 22);
+            this._miCharacterNew.Text = "New";
             // 
             // _miHelp
             // 
@@ -115,6 +133,8 @@
         private System.Windows.Forms.ToolStripMenuItem _miHelp;
         private System.Windows.Forms.ToolStripMenuItem _miHelpAbout;
         private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.ToolStripMenuItem _miCharacter;
+        private System.Windows.Forms.ToolStripMenuItem _miCharacterNew;
     }
 }
 

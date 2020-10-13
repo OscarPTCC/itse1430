@@ -18,6 +18,19 @@ namespace CharacterCreator.Winforms
 
             _miFileExit.Click += OnExit;
             _miHelpAbout.Click += OnHelpAbout;
+            _miCharacterNew.Click += OnCharacterNew;
+        }
+
+        Character _character;
+        private void OnCharacterNew ( object sender, EventArgs e )
+        {
+            var form = new Characterform();
+
+            var result = form.ShowDialog(this);
+            if (result == DialogResult.Cancel)
+                return;
+
+            MessageBox.Show("Save successful!");
         }
 
         private void OnHelpAbout ( object sender, EventArgs e )
