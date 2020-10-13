@@ -53,11 +53,19 @@
             this.textBox9 = new System.Windows.Forms.TextBox();
             this._btnSave = new System.Windows.Forms.Button();
             this._btnCancel = new System.Windows.Forms.Button();
+            this.label13 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // comboBox1
             // 
             this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Items.AddRange(new object[] {
+            "Hero",
+            "Cleric",
+            "Mage",
+            "Thief",
+            "Archer",
+            "Armored Knight"});
             this.comboBox1.Location = new System.Drawing.Point(103, 73);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(121, 23);
@@ -181,6 +189,10 @@
             // comboBox2
             // 
             this.comboBox2.FormattingEnabled = true;
+            this.comboBox2.Items.AddRange(new object[] {
+            "Beorc",
+            "Laguz",
+            "Manakete"});
             this.comboBox2.Location = new System.Drawing.Point(103, 113);
             this.comboBox2.Name = "comboBox2";
             this.comboBox2.Size = new System.Drawing.Size(121, 23);
@@ -262,12 +274,22 @@
             this._btnCancel.UseVisualStyleBackColor = true;
             this._btnCancel.Click += new System.EventHandler(this.OnCancel);
             // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(525, 66);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(132, 30);
+            this.label13.TabIndex = 25;
+            this.label13.Text = "HP caps out at 52.\r\nAll other stats cap at 40.";
+            // 
             // Characterform
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
             this.ClientSize = new System.Drawing.Size(708, 321);
+            this.Controls.Add(this.label13);
             this.Controls.Add(this._btnCancel);
             this.Controls.Add(this._btnSave);
             this.Controls.Add(this.textBox9);
@@ -295,7 +317,8 @@
             this.Controls.Add(this.comboBox1);
             this.MinimumSize = new System.Drawing.Size(724, 360);
             this.Name = "Characterform";
-            this.Text = "New Character";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.Text = "Create New Character";
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -328,5 +351,6 @@
         private System.Windows.Forms.TextBox textBox9;
         private System.Windows.Forms.Button _btnSave;
         private System.Windows.Forms.Button _btnCancel;
+        private System.Windows.Forms.Label label13;
     }
 }
