@@ -11,4 +11,8 @@
     <Authors>Oscar Peinado-Rojo</Authors>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\CharacterCreator\CharacterCreator.csproj" />
+  </ItemGroup>
+
 </Project>
