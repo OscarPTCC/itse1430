@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent ()
         {
+            this.components = new System.ComponentModel.Container();
             this._txtName = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this._txtDescription = new System.Windows.Forms.TextBox();
@@ -41,6 +42,8 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this._txtReleaseYear = new System.Windows.Forms.TextBox();
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
             // _txtName
@@ -51,6 +54,7 @@
             this._txtName.Name = "_txtName";
             this._txtName.Size = new System.Drawing.Size(193, 23);
             this._txtName.TabIndex = 8;
+            this._txtName.Validating += new System.ComponentModel.CancelEventHandler(this.OnValidateName);
             // 
             // label1
             // 
@@ -100,6 +104,7 @@
             this._txtRunLength.Size = new System.Drawing.Size(78, 23);
             this._txtRunLength.TabIndex = 10;
             this._txtRunLength.TextChanged += new System.EventHandler(this.textBox3_TextChanged);
+            this._txtRunLength.Validating += new System.ComponentModel.CancelEventHandler(this.OnValidateRunLength);
             // 
             // _btnCancel
             // 
@@ -180,6 +185,11 @@
             this._txtReleaseYear.TabIndex = 14;
             this._txtReleaseYear.Text = "1900";
             this._txtReleaseYear.TextChanged += new System.EventHandler(this._txtReleaseYear_TextChanged);
+            this._txtReleaseYear.Validating += new System.ComponentModel.CancelEventHandler(this.OnValidateReleaseYear);
+            // 
+            // errorProvider1
+            // 
+            this.errorProvider1.ContainerControl = this;
             // 
             // MovieForm
             // 
@@ -208,6 +218,7 @@
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Add Movie";
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -228,5 +239,6 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox _txtReleaseYear;
+        private System.Windows.Forms.ErrorProvider errorProvider1;
     }
 }

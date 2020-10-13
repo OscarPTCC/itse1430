@@ -111,6 +111,7 @@ namespace MovieLibrary.WinformsHost
             Movie = movie;
             Close();
         }
+
         private int ReadInt32 ( Control control )
         {
             var text = control.Text;
@@ -122,6 +123,28 @@ namespace MovieLibrary.WinformsHost
         }
 
         private void _txtReleaseYear_TextChanged ( object sender, EventArgs e )
+        {
+
+        }
+
+        private void OnValidateName ( object sender, CancelEventArgs e )
+        {
+            TextBox control = sender as TextBox;
+
+            //Name is required
+            if (String.IsNullOrEmpty(control.Text))
+            {
+                MessageBox.Show("Name is required");
+                e.Cancel = true; //Not valid
+            }
+        }
+
+        private void OnValidateRunLength ( object sender, CancelEventArgs e )
+        {
+
+        }
+
+        private void OnValidateReleaseYear ( object sender, CancelEventArgs e )
         {
 
         }
