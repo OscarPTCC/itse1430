@@ -16,7 +16,15 @@ namespace CharacterCreator.Winforms
         {
             InitializeComponent();
 
-            _menuExit.Click += OnExit;
+            _miFileExit.Click += OnExit;
+            _miHelpAbout.Click += OnHelpAbout;
+        }
+
+        private void OnHelpAbout ( object sender, EventArgs e )
+        {
+            var about = new AboutBox();
+
+            about.ShowDialog(this);
         }
 
         private void OnExit (object sender, EventArgs e )

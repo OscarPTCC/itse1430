@@ -4,6 +4,11 @@
     <OutputType>WinExe</OutputType>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <UseWindowsForms>true</UseWindowsForms>
+    <Company>Oscar Peinado-Rojo</Company>
+    <Product>Character Creator</Product>
+    <PackageId>CharacterCreator</PackageId>
+    <Description>Course ITSE-1430</Description>
+    <Authors>Oscar Peinado-Rojo</Authors>
   </PropertyGroup>
 
 </Project>
