@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent ()
         {
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this._comboBoxProfession = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this._txtName = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -42,34 +42,34 @@
             this.label10 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.textBox6 = new System.Windows.Forms.TextBox();
-            this.textBox7 = new System.Windows.Forms.TextBox();
-            this.textBox8 = new System.Windows.Forms.TextBox();
-            this.textBox9 = new System.Windows.Forms.TextBox();
+            this._comboBoxRace = new System.Windows.Forms.ComboBox();
+            this._txtDescription = new System.Windows.Forms.TextBox();
+            this._txtHP = new System.Windows.Forms.TextBox();
+            this._txtStrength = new System.Windows.Forms.TextBox();
+            this._txtMagic = new System.Windows.Forms.TextBox();
+            this._txtSkill = new System.Windows.Forms.TextBox();
+            this._txtLuck = new System.Windows.Forms.TextBox();
+            this._txtSpeed = new System.Windows.Forms.TextBox();
+            this._txtDefense = new System.Windows.Forms.TextBox();
             this._btnSave = new System.Windows.Forms.Button();
             this._btnCancel = new System.Windows.Forms.Button();
             this.label13 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // comboBox1
+            // _comboBoxProfession
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
+            this._comboBoxProfession.FormattingEnabled = true;
+            this._comboBoxProfession.Items.AddRange(new object[] {
             "Hero",
             "Cleric",
             "Mage",
             "Thief",
             "Archer",
             "Armored Knight"});
-            this.comboBox1.Location = new System.Drawing.Point(103, 73);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 23);
-            this.comboBox1.TabIndex = 0;
+            this._comboBoxProfession.Location = new System.Drawing.Point(103, 73);
+            this._comboBoxProfession.Name = "_comboBoxProfession";
+            this._comboBoxProfession.Size = new System.Drawing.Size(121, 23);
+            this._comboBoxProfession.TabIndex = 0;
             // 
             // label1
             // 
@@ -80,12 +80,12 @@
             this.label1.TabIndex = 1;
             this.label1.Text = "Name";
             // 
-            // textBox1
+            // _txtName
             // 
-            this.textBox1.Location = new System.Drawing.Point(103, 31);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 23);
-            this.textBox1.TabIndex = 2;
+            this._txtName.Location = new System.Drawing.Point(103, 31);
+            this._txtName.Name = "_txtName";
+            this._txtName.Size = new System.Drawing.Size(100, 23);
+            this._txtName.TabIndex = 2;
             // 
             // label2
             // 
@@ -186,74 +186,74 @@
             this.label12.TabIndex = 13;
             this.label12.Text = "HP";
             // 
-            // comboBox2
+            // _comboBoxRace
             // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Items.AddRange(new object[] {
+            this._comboBoxRace.FormattingEnabled = true;
+            this._comboBoxRace.Items.AddRange(new object[] {
             "Beorc",
             "Laguz",
             "Manakete"});
-            this.comboBox2.Location = new System.Drawing.Point(103, 113);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(121, 23);
-            this.comboBox2.TabIndex = 14;
+            this._comboBoxRace.Location = new System.Drawing.Point(103, 113);
+            this._comboBoxRace.Name = "_comboBoxRace";
+            this._comboBoxRace.Size = new System.Drawing.Size(121, 23);
+            this._comboBoxRace.TabIndex = 14;
             // 
-            // textBox2
+            // _txtDescription
             // 
-            this.textBox2.Location = new System.Drawing.Point(103, 157);
-            this.textBox2.Multiline = true;
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(169, 146);
-            this.textBox2.TabIndex = 15;
+            this._txtDescription.Location = new System.Drawing.Point(103, 157);
+            this._txtDescription.Multiline = true;
+            this._txtDescription.Name = "_txtDescription";
+            this._txtDescription.Size = new System.Drawing.Size(169, 146);
+            this._txtDescription.TabIndex = 15;
             // 
-            // textBox3
+            // _txtHP
             // 
-            this.textBox3.Location = new System.Drawing.Point(393, 73);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(100, 23);
-            this.textBox3.TabIndex = 16;
+            this._txtHP.Location = new System.Drawing.Point(393, 73);
+            this._txtHP.Name = "_txtHP";
+            this._txtHP.Size = new System.Drawing.Size(100, 23);
+            this._txtHP.TabIndex = 16;
             // 
-            // textBox4
+            // _txtStrength
             // 
-            this.textBox4.Location = new System.Drawing.Point(392, 113);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(100, 23);
-            this.textBox4.TabIndex = 17;
+            this._txtStrength.Location = new System.Drawing.Point(392, 113);
+            this._txtStrength.Name = "_txtStrength";
+            this._txtStrength.Size = new System.Drawing.Size(100, 23);
+            this._txtStrength.TabIndex = 17;
             // 
-            // textBox5
+            // _txtMagic
             // 
-            this.textBox5.Location = new System.Drawing.Point(591, 113);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(100, 23);
-            this.textBox5.TabIndex = 18;
+            this._txtMagic.Location = new System.Drawing.Point(591, 113);
+            this._txtMagic.Name = "_txtMagic";
+            this._txtMagic.Size = new System.Drawing.Size(100, 23);
+            this._txtMagic.TabIndex = 18;
             // 
-            // textBox6
+            // _txtSkill
             // 
-            this.textBox6.Location = new System.Drawing.Point(392, 157);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(100, 23);
-            this.textBox6.TabIndex = 19;
+            this._txtSkill.Location = new System.Drawing.Point(392, 157);
+            this._txtSkill.Name = "_txtSkill";
+            this._txtSkill.Size = new System.Drawing.Size(100, 23);
+            this._txtSkill.TabIndex = 19;
             // 
-            // textBox7
+            // _txtLuck
             // 
-            this.textBox7.Location = new System.Drawing.Point(392, 197);
-            this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new System.Drawing.Size(100, 23);
-            this.textBox7.TabIndex = 20;
+            this._txtLuck.Location = new System.Drawing.Point(392, 197);
+            this._txtLuck.Name = "_txtLuck";
+            this._txtLuck.Size = new System.Drawing.Size(100, 23);
+            this._txtLuck.TabIndex = 20;
             // 
-            // textBox8
+            // _txtSpeed
             // 
-            this.textBox8.Location = new System.Drawing.Point(591, 157);
-            this.textBox8.Name = "textBox8";
-            this.textBox8.Size = new System.Drawing.Size(100, 23);
-            this.textBox8.TabIndex = 21;
+            this._txtSpeed.Location = new System.Drawing.Point(591, 157);
+            this._txtSpeed.Name = "_txtSpeed";
+            this._txtSpeed.Size = new System.Drawing.Size(100, 23);
+            this._txtSpeed.TabIndex = 21;
             // 
-            // textBox9
+            // _txtDefense
             // 
-            this.textBox9.Location = new System.Drawing.Point(591, 197);
-            this.textBox9.Name = "textBox9";
-            this.textBox9.Size = new System.Drawing.Size(100, 23);
-            this.textBox9.TabIndex = 22;
+            this._txtDefense.Location = new System.Drawing.Point(591, 197);
+            this._txtDefense.Name = "_txtDefense";
+            this._txtDefense.Size = new System.Drawing.Size(100, 23);
+            this._txtDefense.TabIndex = 22;
             // 
             // _btnSave
             // 
@@ -292,15 +292,15 @@
             this.Controls.Add(this.label13);
             this.Controls.Add(this._btnCancel);
             this.Controls.Add(this._btnSave);
-            this.Controls.Add(this.textBox9);
-            this.Controls.Add(this.textBox8);
-            this.Controls.Add(this.textBox7);
-            this.Controls.Add(this.textBox6);
-            this.Controls.Add(this.textBox5);
-            this.Controls.Add(this.textBox4);
-            this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.comboBox2);
+            this.Controls.Add(this._txtDefense);
+            this.Controls.Add(this._txtSpeed);
+            this.Controls.Add(this._txtLuck);
+            this.Controls.Add(this._txtSkill);
+            this.Controls.Add(this._txtMagic);
+            this.Controls.Add(this._txtStrength);
+            this.Controls.Add(this._txtHP);
+            this.Controls.Add(this._txtDescription);
+            this.Controls.Add(this._comboBoxRace);
             this.Controls.Add(this.label12);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.label10);
@@ -312,9 +312,9 @@
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this._txtName);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this._comboBoxProfession);
             this.MinimumSize = new System.Drawing.Size(724, 360);
             this.Name = "Characterform";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
@@ -326,9 +326,9 @@
 
         #endregion
 
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox _comboBoxProfession;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox _txtName;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
@@ -340,15 +340,15 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.ComboBox comboBox2;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.TextBox textBox5;
-        private System.Windows.Forms.TextBox textBox6;
-        private System.Windows.Forms.TextBox textBox7;
-        private System.Windows.Forms.TextBox textBox8;
-        private System.Windows.Forms.TextBox textBox9;
+        private System.Windows.Forms.ComboBox _comboBoxRace;
+        private System.Windows.Forms.TextBox _txtDescription;
+        private System.Windows.Forms.TextBox _txtHP;
+        private System.Windows.Forms.TextBox _txtStrength;
+        private System.Windows.Forms.TextBox _txtMagic;
+        private System.Windows.Forms.TextBox _txtSkill;
+        private System.Windows.Forms.TextBox _txtLuck;
+        private System.Windows.Forms.TextBox _txtSpeed;
+        private System.Windows.Forms.TextBox _txtDefense;
         private System.Windows.Forms.Button _btnSave;
         private System.Windows.Forms.Button _btnCancel;
         private System.Windows.Forms.Label label13;
