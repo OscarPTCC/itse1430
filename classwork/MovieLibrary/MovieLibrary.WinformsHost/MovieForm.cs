@@ -58,6 +58,9 @@ namespace MovieLibrary.WinformsHost
                 _txtRunLength.Text = Movie.RunLength.ToString();
                 _txtReleaseYear.Text = Movie.ReleaseYear.ToString();
             };
+
+            // Go ahead and show validation errors
+            ValidateChildren();
         }
 
         private void textBox3_TextChanged ( object sender, EventArgs e )
@@ -81,6 +84,12 @@ namespace MovieLibrary.WinformsHost
         //   void identifier ( object sender, EvenArgs e )
         private void OnSave ( object sender, EventArgs e )
         {
+            //Forces validation of all controls
+            if (!ValidateChildren())
+            {
+                DialogResult = DialogResult.None;
+                return;
+            }
             // I want the button that was clicked
             //Type Casting
             // WRONG: var button = (button)sender; // C-style cast - crashes if wrong
@@ -134,19 +143,51 @@ namespace MovieLibrary.WinformsHost
             //Name is required
             if (String.IsNullOrEmpty(control.Text))
             {
-                MessageBox.Show("Name is required");
+                _errors.SetError(control, "Name is required");
                 e.Cancel = true; //Not valid
             }
+            else
+            {
+                //Clear error from provider
+                _errors.SetError(control, "");
+            };
         }
 
         private void OnValidateRunLength ( object sender, CancelEventArgs e )
         {
+            TextBox control = sender as TextBox;
 
+
+            var value = ReadInt32(control);
+
+            //Name is required
+            if (value < 0)
+            {
+                _errors.SetError(control, "Run Length must be >= 0");
+                e.Cancel = true; //Not valid
+            } else
+            {
+                //Clear error from provider
+                _errors.SetError(control, "");
+            };
         }
 
         private void OnValidateReleaseYear ( object sender, CancelEventArgs e )
         {
+            TextBox control = sender as TextBox;
 
+            var value = ReadInt32(control);
+
+            //Name is required
+            if (value < 1900)
+            {
+                _errors.SetError(control, "Release Year must be >= 1900");
+                e.Cancel = true; //Not valid
+            } else
+            {
+                //Clear error from provider
+                _errors.SetError(control, "");
+            };
         }
     }
 }
