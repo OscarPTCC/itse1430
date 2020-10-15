@@ -1,4 +1,9 @@
-﻿using System;
+﻿/*
+ * ITSE 1430
+ * Oscar Peinado-Rojo
+ * Lab 2 "Character Creator"
+*/
+using System;
 
 namespace CharacterCreator
 {
@@ -66,6 +71,39 @@ namespace CharacterCreator
         /// <value>The maximum value is 52</value>
         public int HP { get; set; }
 
+        public string Validate ()
+        {
+            if (String.IsNullOrEmpty(Name))
+                return "Name is required";
 
+            if (String.IsNullOrEmpty(Profession))
+                return "Profession is required";
+
+            if (String.IsNullOrEmpty(Race))
+                return "Race is required";
+
+            if (Strength < 0 || Strength > 40)
+                return "Strength value must be between 0 and 40";
+
+            if (Magic < 0 || Magic > 40)
+                return "Magic value must be between 0 and 40";
+
+            if (Skill < 0 || Skill > 40)
+                return "Skill value must be between 0 and 40";
+
+            if (Speed < 0 || Speed > 40)
+                return "Speed value must be between 0 and 40";
+
+            if (Luck < 0 || Luck > 40)
+                return "Luck value must be between 0 and 40";
+
+            if (Defense < 0 || Defense > 40)
+                return "Defense value must be between 0 and 40";
+
+            if (HP < 0 || HP > 52)
+                return "HP value must be between 0 and 52";
+
+            return null;
+        }
     }
 }

@@ -69,7 +69,7 @@
             this._comboBoxProfession.Location = new System.Drawing.Point(103, 73);
             this._comboBoxProfession.Name = "_comboBoxProfession";
             this._comboBoxProfession.Size = new System.Drawing.Size(121, 23);
-            this._comboBoxProfession.TabIndex = 0;
+            this._comboBoxProfession.TabIndex = 1;
             // 
             // label1
             // 
@@ -85,7 +85,7 @@
             this._txtName.Location = new System.Drawing.Point(103, 31);
             this._txtName.Name = "_txtName";
             this._txtName.Size = new System.Drawing.Size(100, 23);
-            this._txtName.TabIndex = 2;
+            this._txtName.TabIndex = 0;
             // 
             // label2
             // 
@@ -196,7 +196,7 @@
             this._comboBoxRace.Location = new System.Drawing.Point(103, 113);
             this._comboBoxRace.Name = "_comboBoxRace";
             this._comboBoxRace.Size = new System.Drawing.Size(121, 23);
-            this._comboBoxRace.TabIndex = 14;
+            this._comboBoxRace.TabIndex = 3;
             // 
             // _txtDescription
             // 
@@ -204,63 +204,63 @@
             this._txtDescription.Multiline = true;
             this._txtDescription.Name = "_txtDescription";
             this._txtDescription.Size = new System.Drawing.Size(169, 146);
-            this._txtDescription.TabIndex = 15;
+            this._txtDescription.TabIndex = 6;
             // 
             // _txtHP
             // 
             this._txtHP.Location = new System.Drawing.Point(393, 73);
             this._txtHP.Name = "_txtHP";
             this._txtHP.Size = new System.Drawing.Size(100, 23);
-            this._txtHP.TabIndex = 16;
+            this._txtHP.TabIndex = 2;
             // 
             // _txtStrength
             // 
             this._txtStrength.Location = new System.Drawing.Point(392, 113);
             this._txtStrength.Name = "_txtStrength";
             this._txtStrength.Size = new System.Drawing.Size(100, 23);
-            this._txtStrength.TabIndex = 17;
+            this._txtStrength.TabIndex = 4;
             // 
             // _txtMagic
             // 
             this._txtMagic.Location = new System.Drawing.Point(591, 113);
             this._txtMagic.Name = "_txtMagic";
             this._txtMagic.Size = new System.Drawing.Size(100, 23);
-            this._txtMagic.TabIndex = 18;
+            this._txtMagic.TabIndex = 5;
             // 
             // _txtSkill
             // 
             this._txtSkill.Location = new System.Drawing.Point(392, 157);
             this._txtSkill.Name = "_txtSkill";
             this._txtSkill.Size = new System.Drawing.Size(100, 23);
-            this._txtSkill.TabIndex = 19;
+            this._txtSkill.TabIndex = 7;
             // 
             // _txtLuck
             // 
             this._txtLuck.Location = new System.Drawing.Point(392, 197);
             this._txtLuck.Name = "_txtLuck";
             this._txtLuck.Size = new System.Drawing.Size(100, 23);
-            this._txtLuck.TabIndex = 20;
+            this._txtLuck.TabIndex = 9;
             // 
             // _txtSpeed
             // 
             this._txtSpeed.Location = new System.Drawing.Point(591, 157);
             this._txtSpeed.Name = "_txtSpeed";
             this._txtSpeed.Size = new System.Drawing.Size(100, 23);
-            this._txtSpeed.TabIndex = 21;
+            this._txtSpeed.TabIndex = 8;
             // 
             // _txtDefense
             // 
             this._txtDefense.Location = new System.Drawing.Point(591, 197);
             this._txtDefense.Name = "_txtDefense";
             this._txtDefense.Size = new System.Drawing.Size(100, 23);
-            this._txtDefense.TabIndex = 22;
+            this._txtDefense.TabIndex = 10;
             // 
             // _btnSave
             // 
             this._btnSave.Location = new System.Drawing.Point(499, 280);
             this._btnSave.Name = "_btnSave";
             this._btnSave.Size = new System.Drawing.Size(75, 23);
-            this._btnSave.TabIndex = 23;
+            this._btnSave.TabIndex = 11;
             this._btnSave.Text = "Save";
             this._btnSave.UseVisualStyleBackColor = true;
             // 
@@ -269,7 +269,7 @@
             this._btnCancel.Location = new System.Drawing.Point(591, 280);
             this._btnCancel.Name = "_btnCancel";
             this._btnCancel.Size = new System.Drawing.Size(75, 23);
-            this._btnCancel.TabIndex = 24;
+            this._btnCancel.TabIndex = 12;
             this._btnCancel.Text = "Cancel";
             this._btnCancel.UseVisualStyleBackColor = true;
             this._btnCancel.Click += new System.EventHandler(this.OnCancel);
@@ -315,6 +315,7 @@
             this.Controls.Add(this._txtName);
             this.Controls.Add(this.label1);
             this.Controls.Add(this._comboBoxProfession);
+            this.MaximumSize = new System.Drawing.Size(724, 360);
             this.MinimumSize = new System.Drawing.Size(724, 360);
             this.Name = "Characterform";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
