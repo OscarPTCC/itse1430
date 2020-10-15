@@ -189,5 +189,63 @@ namespace MovieLibrary.WinformsHost
                 _errors.SetError(control, "");
             };
         }
+
+        private void PlayWithObjects( object value )
+        {
+            //Common type System (CTS) - ther is 1 base type from which all other types derive
+            //  System.Object => object
+            //      string ToString () ::= Converts a value to a string
+            //      bool Equals ( object ) ::= Determines if the curent instance equals another value
+            //      in GetHashCode () ::= Returns an integral value representing the object
+            var str = 10.ToString(); //"10"
+            var form = new Form();
+            form.ToString(); // System.Windows.Forms.form
+
+            //Type checking or casting
+            // 1. C-Style cast ::= (T)E
+            //      Runtime attempts to convert value to T and if successful returns value as T else crashes
+            //      Must be compile time validated
+            string stringValue = (string)value;
+
+            // 2. as-operator ::= E as T
+            //      Runtime attempts to convert value to T and if succcessful returns value as T else returns null
+            stringValue = value as string;
+            if (stringValue != null)
+            { /*dealing with string */ }
+
+            // 3. is-operator ::= E is T
+            //      Runtime verifies value is of given T and returns true if successful or false otherwise
+            var isString = value is string;
+            if (isString)
+            {
+                stringValue = (string)value;
+            }
+
+            // 4. pattern-matching ::= E is T identifier
+            //      Runtime attempts to convert E to T and if successful stores in identifier else stores default(T)
+            if (value is string sValue)
+            {
+                //string sValue = value as string
+                //if (sValue != null)
+            }
+
+            //Dealing with null
+            // 1. Let it fail - instance.ToString() //errors if null
+            // 2. null-coalesce-operator ::= E1 ?? E2
+            //      If E1 is not null, return E1, else returns E2
+            stringValue = stringValue ?? "";
+
+            // 3. null-conditional-operator ::= E?.M
+            //      E is an instance, M is any member, if E is not null then call M else skip it
+            //      .ToString() => string
+            //      ?.ToString() => string | null
+            stringValue = stringValue?.ToString() ?? "";
+            // if (stringValue != null)
+            //      var temp = stringValue.ToString();
+            //      if (temp != null) return "";
+            // return ""
+
+            // 4. null reference types
+        }
     }
 }
