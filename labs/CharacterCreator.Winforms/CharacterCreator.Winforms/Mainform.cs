@@ -37,13 +37,13 @@ namespace CharacterCreator.Winforms
 
             var result = form.ShowDialog(this);
             if (result == DialogResult.Cancel)
-            {
+                return;
+
                 _character = form.Character;
 
                 MessageBox.Show("Save successful!");
 
                 RefreshRoster();
-            }
         }
 
         private void OnCharacterDelete ( object sender, EventArgs e )
@@ -68,15 +68,13 @@ namespace CharacterCreator.Winforms
 
             var result = form.ShowDialog(this);
             if (result == DialogResult.Cancel)
-            {
+                return;
+
                 _character = form.Character;
 
                 MessageBox.Show("Save successful!");
 
                 RefreshRoster();
-
-                return;
-            }
         }
 
         private void OnHelpAbout ( object sender, EventArgs e )

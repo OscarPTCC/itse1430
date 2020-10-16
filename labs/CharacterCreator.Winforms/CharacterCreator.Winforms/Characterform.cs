@@ -82,6 +82,7 @@ namespace CharacterCreator.Winforms
             Character = character;
 
             Close();
+            DialogResult = DialogResult.OK;
         }
 
         private int ReadInt32 ( Control control )
