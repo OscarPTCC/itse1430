@@ -21,5 +21,35 @@ namespace CharacterCreator.Winforms
         {
             Close();
         }
+
+        private void OnSave ( object sender, EventArgs e )
+        {
+            Character character = new Character();
+            character.Name = _txtName.Text;
+            character.Profession = _comboProfession.SelectedText;
+            character.Race = _comboBoxRace.SelectedText;
+            character.Description = _txtDescription.Text;
+
+            character.HP = ReadInt32(_txtHP);
+            character.Strength = ReadInt32(_txtStrength);
+            character.Magic = ReadInt32(_txtMagic);
+            character.Skill = ReadInt32(_txtSkill);
+            character.Speed = ReadInt32(_txtSpeed);
+            character.Luck = ReadInt32(_txtLuck);
+            character.Defense = ReadInt32(_txtDefense);
+
+            Character = character;
+            Close();
+        }
+
+        private int ReadInt32 ( Control control)
+        {
+            string text = control.Text;
+
+            if (Int32.TryParse(text, out int result))
+                return result;
+
+            return -1;
+        }
     }
 }

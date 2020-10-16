@@ -10,10 +10,10 @@ namespace CharacterCreator
     ///<summary>Represents a character</summary>
     public class Character
     {
-        private string _name;
-        private string _description;
-        private string _profession;
-        private string _race;
+        private string _name = "";
+        private string _description = "";
+        private string _profession = "";
+        private string _race = "";
 
         /// <summary>The name of the character</summary>
         public string Name

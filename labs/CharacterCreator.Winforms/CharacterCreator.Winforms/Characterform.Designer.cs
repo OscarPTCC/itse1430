@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent ()
         {
-            this._comboBoxProfession = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this._txtName = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -54,22 +53,8 @@
             this._btnSave = new System.Windows.Forms.Button();
             this._btnCancel = new System.Windows.Forms.Button();
             this.label13 = new System.Windows.Forms.Label();
+            this._comboProfession = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
-            // 
-            // _comboBoxProfession
-            // 
-            this._comboBoxProfession.FormattingEnabled = true;
-            this._comboBoxProfession.Items.AddRange(new object[] {
-            "Hero",
-            "Cleric",
-            "Mage",
-            "Thief",
-            "Archer",
-            "Armored Knight"});
-            this._comboBoxProfession.Location = new System.Drawing.Point(103, 73);
-            this._comboBoxProfession.Name = "_comboBoxProfession";
-            this._comboBoxProfession.Size = new System.Drawing.Size(121, 23);
-            this._comboBoxProfession.TabIndex = 1;
             // 
             // label1
             // 
@@ -188,6 +173,7 @@
             // 
             // _comboBoxRace
             // 
+            this._comboBoxRace.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this._comboBoxRace.FormattingEnabled = true;
             this._comboBoxRace.Items.AddRange(new object[] {
             "Beorc",
@@ -212,6 +198,7 @@
             this._txtHP.Name = "_txtHP";
             this._txtHP.Size = new System.Drawing.Size(100, 23);
             this._txtHP.TabIndex = 2;
+            this._txtHP.Text = "20";
             // 
             // _txtStrength
             // 
@@ -219,6 +206,7 @@
             this._txtStrength.Name = "_txtStrength";
             this._txtStrength.Size = new System.Drawing.Size(100, 23);
             this._txtStrength.TabIndex = 4;
+            this._txtStrength.Text = "6";
             // 
             // _txtMagic
             // 
@@ -226,6 +214,7 @@
             this._txtMagic.Name = "_txtMagic";
             this._txtMagic.Size = new System.Drawing.Size(100, 23);
             this._txtMagic.TabIndex = 5;
+            this._txtMagic.Text = "6";
             // 
             // _txtSkill
             // 
@@ -233,6 +222,7 @@
             this._txtSkill.Name = "_txtSkill";
             this._txtSkill.Size = new System.Drawing.Size(100, 23);
             this._txtSkill.TabIndex = 7;
+            this._txtSkill.Text = "6";
             // 
             // _txtLuck
             // 
@@ -240,6 +230,7 @@
             this._txtLuck.Name = "_txtLuck";
             this._txtLuck.Size = new System.Drawing.Size(100, 23);
             this._txtLuck.TabIndex = 9;
+            this._txtLuck.Text = "6";
             // 
             // _txtSpeed
             // 
@@ -247,6 +238,7 @@
             this._txtSpeed.Name = "_txtSpeed";
             this._txtSpeed.Size = new System.Drawing.Size(100, 23);
             this._txtSpeed.TabIndex = 8;
+            this._txtSpeed.Text = "6";
             // 
             // _txtDefense
             // 
@@ -254,6 +246,7 @@
             this._txtDefense.Name = "_txtDefense";
             this._txtDefense.Size = new System.Drawing.Size(100, 23);
             this._txtDefense.TabIndex = 10;
+            this._txtDefense.Text = "6";
             // 
             // _btnSave
             // 
@@ -263,6 +256,7 @@
             this._btnSave.TabIndex = 11;
             this._btnSave.Text = "Save";
             this._btnSave.UseVisualStyleBackColor = true;
+            this._btnSave.Click += new System.EventHandler(this.OnSave);
             // 
             // _btnCancel
             // 
@@ -283,12 +277,29 @@
             this.label13.TabIndex = 25;
             this.label13.Text = "HP caps out at 52.\r\nAll other stats cap at 40.";
             // 
+            // _comboProfession
+            // 
+            this._comboProfession.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this._comboProfession.FormattingEnabled = true;
+            this._comboProfession.Items.AddRange(new object[] {
+            "Hero",
+            "Archer",
+            "Thief",
+            "Cleric",
+            "Mage",
+            "Armored Knight"});
+            this._comboProfession.Location = new System.Drawing.Point(103, 73);
+            this._comboProfession.Name = "_comboProfession";
+            this._comboProfession.Size = new System.Drawing.Size(121, 23);
+            this._comboProfession.TabIndex = 1;
+            // 
             // Characterform
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
             this.ClientSize = new System.Drawing.Size(708, 321);
+            this.Controls.Add(this._comboProfession);
             this.Controls.Add(this.label13);
             this.Controls.Add(this._btnCancel);
             this.Controls.Add(this._btnSave);
@@ -314,7 +325,6 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this._txtName);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this._comboBoxProfession);
             this.MaximumSize = new System.Drawing.Size(724, 360);
             this.MinimumSize = new System.Drawing.Size(724, 360);
             this.Name = "Characterform";
@@ -326,8 +336,6 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.ComboBox _comboBoxProfession;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox _txtName;
         private System.Windows.Forms.Label label2;
@@ -353,5 +361,6 @@
         private System.Windows.Forms.Button _btnSave;
         private System.Windows.Forms.Button _btnCancel;
         private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.ComboBox _comboProfession;
     }
 }
