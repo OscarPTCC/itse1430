@@ -26,8 +26,8 @@ namespace CharacterCreator.Winforms
         {
             Character character = new Character();
             character.Name = _txtName.Text;
-            character.Profession = _comboProfession.SelectedText;
-            character.Race = _comboBoxRace.SelectedText;
+            character.Profession = _comboProfession.Text;
+            character.Race = _comboBoxRace.Text;
             character.Description = _txtDescription.Text;
 
             character.HP = ReadInt32(_txtHP);
@@ -37,6 +37,14 @@ namespace CharacterCreator.Winforms
             character.Speed = ReadInt32(_txtSpeed);
             character.Luck = ReadInt32(_txtLuck);
             character.Defense = ReadInt32(_txtDefense);
+
+            string error = character.Validate();
+            if (!String.IsNullOrEmpty(error))
+            {
+                MessageBox.Show(this, error, "Save Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                DialogResult = DialogResult.None;
+                return;
+            };
 
             Character = character;
             Close();

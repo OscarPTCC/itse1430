@@ -31,6 +31,8 @@ namespace CharacterCreator.Winforms
                 return;
 
             MessageBox.Show("Save successful!");
+
+            _character = form.Character;
         }
 
         private void OnHelpAbout ( object sender, EventArgs e )
