@@ -17,6 +17,27 @@ namespace CharacterCreator.Winforms
 
         public Character Character { get; set; }
 
+        protected override void OnLoad ( EventArgs e )
+        {
+            base.OnLoad(e);
+
+            if (Character != null)
+            {
+                _txtName.Text = Character.Name;
+                _comboProfession.Text = Character.Profession;
+                _comboBoxRace.Text = Character.Race;
+                _txtDescription.Text = Character.Description;
+
+                _txtHP.Text = Character.HP.ToString();
+                _txtStrength.Text = Character.Strength.ToString();
+                _txtMagic.Text = Character.Magic.ToString();
+                _txtSkill.Text = Character.Skill.ToString();
+                _txtSpeed.Text = Character.Speed.ToString();
+                _txtLuck.Text = Character.Luck.ToString();
+                _txtDefense.Text = Character.Defense.ToString();
+            }
+        }
+
         private void OnCancel ( object sender, EventArgs e )
         {
             Close();

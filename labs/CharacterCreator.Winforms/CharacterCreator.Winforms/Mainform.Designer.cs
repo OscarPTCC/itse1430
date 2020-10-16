@@ -36,6 +36,8 @@
             this._miHelp = new System.Windows.Forms.ToolStripMenuItem();
             this._miHelpAbout = new System.Windows.Forms.ToolStripMenuItem();
             this._lstRoster = new System.Windows.Forms.ListBox();
+            this._miCharacterEdit = new System.Windows.Forms.ToolStripMenuItem();
+            this._miCharacterDelete = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -69,7 +71,9 @@
             // _miCharacter
             // 
             this._miCharacter.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this._miCharacterNew});
+            this._miCharacterNew,
+            this._miCharacterEdit,
+            this._miCharacterDelete});
             this._miCharacter.Name = "_miCharacter";
             this._miCharacter.Size = new System.Drawing.Size(70, 20);
             this._miCharacter.Text = "&Character";
@@ -78,7 +82,7 @@
             // 
             this._miCharacterNew.Name = "_miCharacterNew";
             this._miCharacterNew.ShortcutKeys = System.Windows.Forms.Keys.Insert;
-            this._miCharacterNew.Size = new System.Drawing.Size(120, 22);
+            this._miCharacterNew.Size = new System.Drawing.Size(134, 22);
             this._miCharacterNew.Text = "New";
             // 
             // _miHelp
@@ -105,6 +109,20 @@
             this._lstRoster.Name = "_lstRoster";
             this._lstRoster.Size = new System.Drawing.Size(284, 387);
             this._lstRoster.TabIndex = 1;
+            // 
+            // _miCharacterEdit
+            // 
+            this._miCharacterEdit.Name = "_miCharacterEdit";
+            this._miCharacterEdit.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.D0)));
+            this._miCharacterEdit.Size = new System.Drawing.Size(134, 22);
+            this._miCharacterEdit.Text = "Edit";
+            // 
+            // _miCharacterDelete
+            // 
+            this._miCharacterDelete.Name = "_miCharacterDelete";
+            this._miCharacterDelete.ShortcutKeys = System.Windows.Forms.Keys.Delete;
+            this._miCharacterDelete.Size = new System.Drawing.Size(134, 22);
+            this._miCharacterDelete.Text = "Delete";
             // 
             // Mainform
             // 
@@ -135,6 +153,8 @@
         private System.Windows.Forms.ListBox _lstRoster;
         private System.Windows.Forms.ToolStripMenuItem _miCharacter;
         private System.Windows.Forms.ToolStripMenuItem _miCharacterNew;
+        private System.Windows.Forms.ToolStripMenuItem _miCharacterEdit;
+        private System.Windows.Forms.ToolStripMenuItem _miCharacterDelete;
     }
 }
 
