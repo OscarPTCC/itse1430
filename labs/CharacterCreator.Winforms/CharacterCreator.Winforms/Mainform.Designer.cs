@@ -33,11 +33,11 @@
             this._miFileExit = new System.Windows.Forms.ToolStripMenuItem();
             this._miCharacter = new System.Windows.Forms.ToolStripMenuItem();
             this._miCharacterNew = new System.Windows.Forms.ToolStripMenuItem();
+            this._miCharacterEdit = new System.Windows.Forms.ToolStripMenuItem();
+            this._miCharacterDelete = new System.Windows.Forms.ToolStripMenuItem();
             this._miHelp = new System.Windows.Forms.ToolStripMenuItem();
             this._miHelpAbout = new System.Windows.Forms.ToolStripMenuItem();
             this._lstRoster = new System.Windows.Forms.ListBox();
-            this._miCharacterEdit = new System.Windows.Forms.ToolStripMenuItem();
-            this._miCharacterDelete = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -85,6 +85,20 @@
             this._miCharacterNew.Size = new System.Drawing.Size(134, 22);
             this._miCharacterNew.Text = "New";
             // 
+            // _miCharacterEdit
+            // 
+            this._miCharacterEdit.Name = "_miCharacterEdit";
+            this._miCharacterEdit.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.D0)));
+            this._miCharacterEdit.Size = new System.Drawing.Size(134, 22);
+            this._miCharacterEdit.Text = "Edit";
+            // 
+            // _miCharacterDelete
+            // 
+            this._miCharacterDelete.Name = "_miCharacterDelete";
+            this._miCharacterDelete.ShortcutKeys = System.Windows.Forms.Keys.Delete;
+            this._miCharacterDelete.Size = new System.Drawing.Size(134, 22);
+            this._miCharacterDelete.Text = "Delete";
+            // 
             // _miHelp
             // 
             this._miHelp.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -109,20 +123,6 @@
             this._lstRoster.Name = "_lstRoster";
             this._lstRoster.Size = new System.Drawing.Size(284, 387);
             this._lstRoster.TabIndex = 1;
-            // 
-            // _miCharacterEdit
-            // 
-            this._miCharacterEdit.Name = "_miCharacterEdit";
-            this._miCharacterEdit.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.D0)));
-            this._miCharacterEdit.Size = new System.Drawing.Size(134, 22);
-            this._miCharacterEdit.Text = "Edit";
-            // 
-            // _miCharacterDelete
-            // 
-            this._miCharacterDelete.Name = "_miCharacterDelete";
-            this._miCharacterDelete.ShortcutKeys = System.Windows.Forms.Keys.Delete;
-            this._miCharacterDelete.Size = new System.Drawing.Size(134, 22);
-            this._miCharacterDelete.Text = "Delete";
             // 
             // Mainform
             // 

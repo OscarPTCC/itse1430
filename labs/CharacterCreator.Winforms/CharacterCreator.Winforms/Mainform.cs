@@ -12,9 +12,7 @@ namespace CharacterCreator.Winforms
 {
     public partial class Mainform : Form
     {
-        private Character _character;
-
-        public Mainform()
+        public Mainform ()
         {
             InitializeComponent();
 
@@ -28,13 +26,14 @@ namespace CharacterCreator.Winforms
             _miCharacterEdit.Click += OnCharacterEdit;
         }
 
+        public Character _character;
+
         private void OnCharacterEdit ( object sender, EventArgs e )
         {
             if (_character == null)
                 return;
 
-            var form = new Characterform();
-            form.Character = _character;
+            var form = new Characterform(_character, "Edit Character");
 
             var result = form.ShowDialog(this);
             if (result == DialogResult.Cancel)
@@ -43,6 +42,8 @@ namespace CharacterCreator.Winforms
             _character = form.Character;
 
             MessageBox.Show("Save successful!");
+
+            RefreshRoster();
         }
 
         private void OnCharacterDelete ( object sender, EventArgs e )
@@ -51,25 +52,31 @@ namespace CharacterCreator.Winforms
                 return;
 
             switch (MessageBox.Show(this, "Are you sure you want to delete?", "Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Question))
-                {
-                    case DialogResult.Yes: break;
-                    case DialogResult.No: return;
-                };
+            {
+                case DialogResult.Yes: break;
+                case DialogResult.No: return;
+            };
 
             _character = null;
+
+            RefreshRoster();
         }
 
         private void OnCharacterNew ( object sender, EventArgs e )
         {
             var form = new Characterform();
-            
+
             var result = form.ShowDialog(this);
             if (result == DialogResult.Cancel)
+            {
+                _character = form.Character;
+
+                MessageBox.Show("Save successful!");
+
+                RefreshRoster();
+
                 return;
-
-            _character = form.Character;
-
-            MessageBox.Show("Save successful!");  
+            }
         }
 
         private void OnHelpAbout ( object sender, EventArgs e )
@@ -79,12 +86,12 @@ namespace CharacterCreator.Winforms
             about.ShowDialog(this);
         }
 
-        private void OnExit (object sender, EventArgs e )
+        private void OnExit ( object sender, EventArgs e )
         {
             Close();
         }
 
-        public void RefreshRoster ()
+        private void RefreshRoster ()
         {
             var roster = new BindingList<Character>();
 
@@ -92,7 +99,9 @@ namespace CharacterCreator.Winforms
 
             _lstRoster.DataSource = roster;
 
-            _lstRoster.DisplayMember = _character.Name;
+            _lstRoster.DisplayMember = "Name";
+            _lstRoster.DisplayMember = "Profession";
+            _lstRoster.DisplayMember = "Race";
         }
     }
 }

@@ -15,6 +15,17 @@ namespace CharacterCreator.Winforms
             InitializeComponent();
         }
 
+        public Characterform ( Character character ) : this(character, null)
+        {
+
+        }
+
+        public Characterform ( Character character, string title ) : this()
+        {
+            Character = character;
+            Text = title ?? "Add New Character";
+        }
+
         public Character Character { get; set; }
 
         protected override void OnLoad ( EventArgs e )
@@ -60,18 +71,20 @@ namespace CharacterCreator.Winforms
             character.Defense = ReadInt32(_txtDefense);
 
             string error = character.Validate();
+
             if (!String.IsNullOrEmpty(error))
             {
                 MessageBox.Show(this, error, "Save Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 DialogResult = DialogResult.None;
                 return;
             };
-
+           
             Character = character;
+
             Close();
         }
 
-        private int ReadInt32 ( Control control)
+        private int ReadInt32 ( Control control )
         {
             string text = control.Text;
 
