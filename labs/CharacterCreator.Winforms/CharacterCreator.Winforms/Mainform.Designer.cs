@@ -35,7 +35,7 @@
             this._miCharacterNew = new System.Windows.Forms.ToolStripMenuItem();
             this._miHelp = new System.Windows.Forms.ToolStripMenuItem();
             this._miHelpAbout = new System.Windows.Forms.ToolStripMenuItem();
-            this.listBox1 = new System.Windows.Forms.ListBox();
+            this._lstRoster = new System.Windows.Forms.ListBox();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -96,22 +96,22 @@
             this._miHelpAbout.Size = new System.Drawing.Size(126, 22);
             this._miHelpAbout.Text = "About";
             // 
-            // listBox1
+            // _lstRoster
             // 
-            this.listBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.ItemHeight = 15;
-            this.listBox1.Location = new System.Drawing.Point(0, 24);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(284, 387);
-            this.listBox1.TabIndex = 1;
+            this._lstRoster.Dock = System.Windows.Forms.DockStyle.Fill;
+            this._lstRoster.FormattingEnabled = true;
+            this._lstRoster.ItemHeight = 15;
+            this._lstRoster.Location = new System.Drawing.Point(0, 24);
+            this._lstRoster.Name = "_lstRoster";
+            this._lstRoster.Size = new System.Drawing.Size(284, 387);
+            this._lstRoster.TabIndex = 1;
             // 
             // Mainform
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(284, 411);
-            this.Controls.Add(this.listBox1);
+            this.Controls.Add(this._lstRoster);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.MinimumSize = new System.Drawing.Size(260, 420);
@@ -132,7 +132,7 @@
         private System.Windows.Forms.ToolStripMenuItem _miFileExit;
         private System.Windows.Forms.ToolStripMenuItem _miHelp;
         private System.Windows.Forms.ToolStripMenuItem _miHelpAbout;
-        private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.ListBox _lstRoster;
         private System.Windows.Forms.ToolStripMenuItem _miCharacter;
         private System.Windows.Forms.ToolStripMenuItem _miCharacterNew;
     }

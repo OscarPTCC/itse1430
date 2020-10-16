@@ -19,6 +19,7 @@ namespace CharacterCreator.Winforms
             _miFileExit.Click += OnExit;
             _miHelpAbout.Click += OnHelpAbout;
             _miCharacterNew.Click += OnCharacterNew;
+            RefreshRoster();
         }
 
         Character _character;
@@ -45,6 +46,19 @@ namespace CharacterCreator.Winforms
         private void OnExit (object sender, EventArgs e )
         {
             Close();
+        }
+
+        private void RefreshRoster ()
+        {
+            var roster = new BindingList<Character>();
+
+            roster.Add(_character);
+
+            _lstRoster.DataSource = roster;
+
+            _lstRoster.DisplayMember = _character.Name;
+
+            _lstRoster.DisplayMember = _character.Profession;
         }
     }
 }
