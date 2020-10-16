@@ -37,13 +37,13 @@ namespace CharacterCreator.Winforms
 
             var result = form.ShowDialog(this);
             if (result == DialogResult.Cancel)
-                return;
+            {
+                _character = form.Character;
 
-            _character = form.Character;
+                MessageBox.Show("Save successful!");
 
-            MessageBox.Show("Save successful!");
-
-            RefreshRoster();
+                RefreshRoster();
+            }
         }
 
         private void OnCharacterDelete ( object sender, EventArgs e )
@@ -100,8 +100,6 @@ namespace CharacterCreator.Winforms
             _lstRoster.DataSource = roster;
 
             _lstRoster.DisplayMember = "Name";
-            _lstRoster.DisplayMember = "Profession";
-            _lstRoster.DisplayMember = "Race";
         }
     }
 }
