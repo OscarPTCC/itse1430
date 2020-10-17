@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent ()
         {
+            this.components = new System.ComponentModel.Container();
             this.label1 = new System.Windows.Forms.Label();
             this._txtName = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -54,6 +55,8 @@
             this._btnCancel = new System.Windows.Forms.Button();
             this.label13 = new System.Windows.Forms.Label();
             this._comboProfession = new System.Windows.Forms.ComboBox();
+            this._error = new System.Windows.Forms.ErrorProvider(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this._error)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -71,6 +74,7 @@
             this._txtName.Name = "_txtName";
             this._txtName.Size = new System.Drawing.Size(100, 23);
             this._txtName.TabIndex = 0;
+            this._txtName.Validating += new System.ComponentModel.CancelEventHandler(this.OnValidateName);
             // 
             // label2
             // 
@@ -176,6 +180,7 @@
             this._comboBoxRace.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this._comboBoxRace.FormattingEnabled = true;
             this._comboBoxRace.Items.AddRange(new object[] {
+            "",
             "Beorc",
             "Laguz",
             "Manakete",
@@ -184,6 +189,7 @@
             this._comboBoxRace.Name = "_comboBoxRace";
             this._comboBoxRace.Size = new System.Drawing.Size(121, 23);
             this._comboBoxRace.TabIndex = 3;
+            this._comboBoxRace.Validating += new System.ComponentModel.CancelEventHandler(this.OnValidateRace);
             // 
             // _txtDescription
             // 
@@ -200,6 +206,7 @@
             this._txtHP.Size = new System.Drawing.Size(100, 23);
             this._txtHP.TabIndex = 2;
             this._txtHP.Text = "20";
+            this._txtHP.Validating += new System.ComponentModel.CancelEventHandler(this.OnValidateHP);
             // 
             // _txtStrength
             // 
@@ -208,6 +215,7 @@
             this._txtStrength.Size = new System.Drawing.Size(100, 23);
             this._txtStrength.TabIndex = 4;
             this._txtStrength.Text = "6";
+            this._txtStrength.Validating += new System.ComponentModel.CancelEventHandler(this.OnValidateStrength);
             // 
             // _txtMagic
             // 
@@ -216,6 +224,7 @@
             this._txtMagic.Size = new System.Drawing.Size(100, 23);
             this._txtMagic.TabIndex = 5;
             this._txtMagic.Text = "6";
+            this._txtMagic.Validating += new System.ComponentModel.CancelEventHandler(this.OnValidateMagic);
             // 
             // _txtSkill
             // 
@@ -224,6 +233,7 @@
             this._txtSkill.Size = new System.Drawing.Size(100, 23);
             this._txtSkill.TabIndex = 7;
             this._txtSkill.Text = "6";
+            this._txtSkill.Validating += new System.ComponentModel.CancelEventHandler(this.OnValidateSkill);
             // 
             // _txtLuck
             // 
@@ -232,6 +242,7 @@
             this._txtLuck.Size = new System.Drawing.Size(100, 23);
             this._txtLuck.TabIndex = 9;
             this._txtLuck.Text = "6";
+            this._txtLuck.Validating += new System.ComponentModel.CancelEventHandler(this.OnValidateLuck);
             // 
             // _txtSpeed
             // 
@@ -240,6 +251,7 @@
             this._txtSpeed.Size = new System.Drawing.Size(100, 23);
             this._txtSpeed.TabIndex = 8;
             this._txtSpeed.Text = "6";
+            this._txtSpeed.Validating += new System.ComponentModel.CancelEventHandler(this.OnValidateSpeed);
             // 
             // _txtDefense
             // 
@@ -248,6 +260,7 @@
             this._txtDefense.Size = new System.Drawing.Size(100, 23);
             this._txtDefense.TabIndex = 10;
             this._txtDefense.Text = "6";
+            this._txtDefense.Validating += new System.ComponentModel.CancelEventHandler(this.OnValidateDefense);
             // 
             // _btnSave
             // 
@@ -286,6 +299,7 @@
             this._comboProfession.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this._comboProfession.FormattingEnabled = true;
             this._comboProfession.Items.AddRange(new object[] {
+            "",
             "Hero",
             "Archer",
             "Thief",
@@ -296,6 +310,12 @@
             this._comboProfession.Name = "_comboProfession";
             this._comboProfession.Size = new System.Drawing.Size(121, 23);
             this._comboProfession.TabIndex = 1;
+            this._comboProfession.Validating += new System.ComponentModel.CancelEventHandler(this.OnValidateProfession);
+            // 
+            // _error
+            // 
+            this._error.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink;
+            this._error.ContainerControl = this;
             // 
             // Characterform
             // 
@@ -337,6 +357,7 @@
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Create New Character";
+            ((System.ComponentModel.ISupportInitialize)(this._error)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -369,5 +390,6 @@
         private System.Windows.Forms.Button _btnCancel;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.ComboBox _comboProfession;
+        private System.Windows.Forms.ErrorProvider _error;
     }
 }

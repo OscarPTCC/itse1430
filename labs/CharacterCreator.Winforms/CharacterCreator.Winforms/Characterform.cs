@@ -78,7 +78,7 @@ namespace CharacterCreator.Winforms
                 DialogResult = DialogResult.None;
                 return;
             };
-           
+
             Character = character;
 
             Close();
@@ -92,6 +92,140 @@ namespace CharacterCreator.Winforms
                 return result;
 
             return -1;
+        }
+
+        private void OnValidateName ( object sender, CancelEventArgs e )
+        {
+            TextBox control = sender as TextBox;
+
+            if (String.IsNullOrEmpty(control.Text))
+            {
+                _error.SetError(control, "Name is required");
+                e.Cancel = true;
+            } else
+                _error.SetError(control, "");
+        }
+
+        private void OnValidateProfession ( object sender, CancelEventArgs e )
+        {
+            ComboBox control = sender as ComboBox;
+
+            if (String.IsNullOrEmpty(control.Text))
+            {
+                _error.SetError(control, "Profession is required");
+                e.Cancel = true;
+            } else
+                _error.SetError(control, "");
+        }
+
+        private void OnValidateRace ( object sender, CancelEventArgs e )
+        {
+            ComboBox control = sender as ComboBox;
+
+            if (String.IsNullOrEmpty(control.Text))
+            {
+                _error.SetError(control, "Race is required");
+                e.Cancel = true;
+            } else
+                _error.SetError(control, "");
+        }
+
+        private void OnValidateHP ( object sender, CancelEventArgs e )
+        {
+            TextBox control = sender as TextBox;
+
+            int value = ReadInt32(control);
+
+            if (value < 0 || value > 52)
+            {
+                _error.SetError(control, "HP is required");
+                e.Cancel = true;
+            } else
+                _error.SetError(control, "");
+        }
+
+        private void OnValidateStrength ( object sender, CancelEventArgs e )
+        {
+            TextBox control = sender as TextBox;
+
+            int value = ReadInt32(control);
+
+            if (value < 0 || value > 40)
+            {
+                _error.SetError(control, "Strength is required");
+                e.Cancel = true;
+            } else
+                _error.SetError(control, "");
+        }
+
+        private void OnValidateMagic ( object sender, CancelEventArgs e )
+        {
+            TextBox control = sender as TextBox;
+
+            int value = ReadInt32(control);
+
+            if (value < 0 || value > 40)
+            {
+                _error.SetError(control, "Magic is required");
+                e.Cancel = true;
+            } else
+                _error.SetError(control, "");
+        }
+
+        private void OnValidateSkill ( object sender, CancelEventArgs e )
+        {
+            TextBox control = sender as TextBox;
+
+            int value = ReadInt32(control);
+
+            if (value < 0 || value > 40)
+            {
+                _error.SetError(control, "Skill is required");
+                e.Cancel = true;
+            } else
+                _error.SetError(control, "");
+        }
+
+        private void OnValidateSpeed ( object sender, CancelEventArgs e )
+        {
+            TextBox control = sender as TextBox;
+
+            int value = ReadInt32(control);
+
+            if (value < 0 || value > 40)
+            {
+                _error.SetError(control, "Speed is required");
+                e.Cancel = true;
+            } else
+                _error.SetError(control, "");
+        }
+
+        private void OnValidateLuck (object sender, CancelEventArgs e )
+        {
+            TextBox control = sender as TextBox;
+
+            int value = ReadInt32(control);
+
+            if (value < 0 || value > 40)
+            {
+                _error.SetError(control, "Luck is required");
+                e.Cancel = true;
+            } else
+                _error.SetError(control, "");
+        }
+
+        private void OnValidateDefense (object sender, CancelEventArgs e )
+        {
+            TextBox control = sender as TextBox;
+
+            int value = ReadInt32(control);
+
+            if (value < 0 || value > 40)
+            {
+                _error.SetError(control, "Defense is required");
+                e.Cancel = true;
+            } else
+                _error.SetError(control, "");
         }
     }
 }
