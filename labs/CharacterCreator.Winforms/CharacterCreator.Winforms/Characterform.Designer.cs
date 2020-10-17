@@ -329,9 +329,12 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this._txtName);
             this.Controls.Add(this.label1);
+            this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(656, 338);
+            this.MinimizeBox = false;
             this.MinimumSize = new System.Drawing.Size(656, 338);
             this.Name = "Characterform";
+            this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Create New Character";
             this.ResumeLayout(false);

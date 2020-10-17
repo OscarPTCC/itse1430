@@ -45,31 +45,31 @@ namespace CharacterCreator
 
         /// <summary>The character's Strength stat</summary>
         /// <value>The maximum value is 40</value>
-        public int Strength { get; set; }
+        public int Strength { get; set; } = 6;
 
         /// <summary>The character's Magic stat</summary>
         ///  <value>The maximum value is 40</value>
-        public int Magic { get; set; }
+        public int Magic { get; set; } = 6;
 
         /// <summary>The character's Skill stat</summary>
         /// <value>The maximum value is 40</value>
-        public int Skill { get; set; }
+        public int Skill { get; set; } = 6;
 
         /// <summary>The character's Speed stat</summary>
         /// <value>The maximum value is 40</value>
-        public int Speed { get; set; }
+        public int Speed { get; set; } = 6;
 
         /// <summary>The character's Luck stat</summary>
         /// <value>The maximum value is 40</value>
-        public int Luck { get; set; }
+        public int Luck { get; set; } = 6;
 
         /// <summary>The character's Defense stat</summary>
         /// <value>The maximum value is 40</value>
-        public int Defense { get; set; }
+        public int Defense { get; set; } = 6;
 
         /// <summary>The character's HP or Hit Points stat</summary>
         /// <value>The maximum value is 52</value>
-        public int HP { get; set; }
+        public int HP { get; set; } = 20;
 
         public string Validate ()
         {
