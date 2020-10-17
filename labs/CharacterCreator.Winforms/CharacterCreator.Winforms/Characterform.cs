@@ -200,7 +200,7 @@ namespace CharacterCreator.Winforms
                 _error.SetError(control, "");
         }
 
-        private void OnValidateLuck (object sender, CancelEventArgs e )
+        private void OnValidateLuck ( object sender, CancelEventArgs e )
         {
             TextBox control = sender as TextBox;
 
@@ -214,7 +214,7 @@ namespace CharacterCreator.Winforms
                 _error.SetError(control, "");
         }
 
-        private void OnValidateDefense (object sender, CancelEventArgs e )
+        private void OnValidateDefense ( object sender, CancelEventArgs e )
         {
             TextBox control = sender as TextBox;
 
