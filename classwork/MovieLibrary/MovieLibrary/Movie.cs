@@ -138,6 +138,9 @@ namespace MovieLibrary
        //private int _releaseYear = 1900;
 
         public bool IsClassic { get; set; }
+
+        public int Id { get; set; }
+
         //{
         //    get { return _isClassic; }
         //   set { _isClassic = value; }
