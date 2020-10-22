@@ -53,7 +53,7 @@ namespace MovieLibrary.WinformsHost
             {
                 _txtName.Text = Movie.Name;
                 _txtDescription.Text = Movie.Description;
-                _comboRating.SelectedText = Movie.Rating;
+                _comboRating.Text = Movie.Rating;
                 _chkClassic.Checked = Movie.IsClassic;
                 _txtRunLength.Text = Movie.RunLength.ToString();
                 _txtReleaseYear.Text = Movie.ReleaseYear.ToString();

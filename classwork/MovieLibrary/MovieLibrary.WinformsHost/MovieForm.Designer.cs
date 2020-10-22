@@ -102,7 +102,7 @@
             this._txtRunLength.Location = new System.Drawing.Point(89, 203);
             this._txtRunLength.Name = "_txtRunLength";
             this._txtRunLength.Size = new System.Drawing.Size(78, 23);
-            this._txtRunLength.TabIndex = 10;
+            this._txtRunLength.TabIndex = 11;
             this._txtRunLength.TextChanged += new System.EventHandler(this.textBox3_TextChanged);
             this._txtRunLength.Validating += new System.ComponentModel.CancelEventHandler(this.OnValidateRunLength);
             // 
@@ -110,7 +110,6 @@
             // 
             this._btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this._btnCancel.CausesValidation = false;
-            this._btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this._btnCancel.Location = new System.Drawing.Point(250, 376);
             this._btnCancel.Name = "_btnCancel";
             this._btnCancel.Size = new System.Drawing.Size(75, 23);
@@ -138,7 +137,7 @@
             this._chkClassic.Location = new System.Drawing.Point(89, 284);
             this._chkClassic.Name = "_chkClassic";
             this._chkClassic.Size = new System.Drawing.Size(78, 19);
-            this._chkClassic.TabIndex = 12;
+            this._chkClassic.TabIndex = 13;
             this._chkClassic.Text = "Is Classic?";
             this._chkClassic.UseVisualStyleBackColor = true;
             // 
@@ -155,7 +154,7 @@
             this._comboRating.Location = new System.Drawing.Point(89, 242);
             this._comboRating.Name = "_comboRating";
             this._comboRating.Size = new System.Drawing.Size(98, 23);
-            this._comboRating.TabIndex = 13;
+            this._comboRating.TabIndex = 12;
             // 
             // label4
             // 
