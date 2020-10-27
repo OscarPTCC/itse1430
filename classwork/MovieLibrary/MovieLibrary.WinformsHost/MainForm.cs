@@ -12,13 +12,13 @@ namespace MovieLibrary.WinformsHost
             //Type = Movie
             //Variable = movie
             //Value = Instance (or an object)
-            Movie movie;
-            movie = new Movie();
+            //Movie movie;
+            //movie = new Movie();
 
             //var movie2 = new Movie();
 
             //member access operator ::= E . M
-            movie.Name = "Jaws";
+            //movie.Name = "Jaws";
             //var str = movie.Description;
 
             //hooks up an event handler to an event
@@ -49,7 +49,7 @@ namespace MovieLibrary.WinformsHost
         //Array - T[] Array of movies
         //  Instance ::= new T[Ei]
         //  Index : 0 to size -1
-        private MovieDatabase _movies = new MovieDatabase(); //0..99
+        private IMovieDatabase _movies = new MovieDatabase(); //0..99
         //private Movie[] _emptyMovies = new Movie[0]; //empty array and nulls equivalent, so always use empty array instead of null
 
         private void AddMovie ( Movie movie )
@@ -68,12 +68,12 @@ namespace MovieLibrary.WinformsHost
             //  Length -> int (# of rows in the array)
             //for (var index = 0; index < _movies.Length; ++index)
             //{
-                //Array element access - V[int]
+            //Array element access - V[int]
             //    if (_movies[index] == null)
             //    {
-                    //  Add movie to array
+            //  Add movie to array
             //        _movies[index] = movie; //Movie is a ref type thus movie _movies[index] reference the same instance
-                    return;
+            return;
             //    };
             //};
 

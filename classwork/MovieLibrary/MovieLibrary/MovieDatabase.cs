@@ -4,7 +4,7 @@ using System.Text;
 
 namespace MovieLibrary
 {
-    public class MovieDatabase
+    public class MovieDatabase : IMovieDatabase
     {
         //Default constructor to send database
         public MovieDatabase ()
@@ -13,7 +13,7 @@ namespace MovieLibrary
             //_movies.Clear();
 
             //Collections initializer syntax
-            var items = new [] { //Movie[] {
+            var items = new[] { //Movie[] {
                 new Movie() {
                     Name = "Jaws",
                     ReleaseYear = 1977,
@@ -31,8 +31,10 @@ namespace MovieLibrary
                     Rating = "PG",
                 }
             };
+
             foreach (var item in items)
                 Add(item, out var error);
+            #region seed database
             //Seed database
             // Object initialize - only usable on new operator
             //  1. Can only set properties with setters
@@ -71,7 +73,10 @@ namespace MovieLibrary
             //};
 
             //Add(movie, out error);
+            #endregion 
         }
+
+        public void foo () { }
 
         public Movie Add ( Movie movie, out string error )
         {
@@ -149,7 +154,9 @@ namespace MovieLibrary
             #endregion
         }
 
-        public Movie[] GetAll ()
+        //Use IEnumerable<T> for readonly lists of items
+        //public Movie[] GetAll ()
+        public IEnumerable<Movie> GetAll ()
         {
             //Don't do this
             //  1. Expose underlying movie items
@@ -163,12 +170,24 @@ namespace MovieLibrary
             //return _movies;
             #endregion
 
-            var items = new Movie[_movies.Count];
-            var index = 0;
-            foreach (var movie in _movies)
-                items[index++] = CloneMovie(movie);
+            //var items = new Movie[_movies.Count];
+            //var index = 0;
 
-            return items;
+            //Foreach equivalent
+            // var enumerator = _movies.GetEnumerator();
+            // while (enumerator.MoveNext())
+            // { 
+            //  var movie = enumerator.Current;
+            // S* 
+            // }
+
+            //iterator
+            foreach (var movie in _movies) //relies on IEnumeration<T>
+                //    items[index++] = CloneMovie(movie);
+                yield return CloneMovie(movie);
+                ; 
+
+            //return items;
         }
 
         public Movie Get ( int id )
