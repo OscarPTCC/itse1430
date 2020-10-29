@@ -109,6 +109,7 @@ namespace MovieLibrary.WinformsHost
             movie.ReleaseYear = ReadInt32(_txtReleaseYear);
 
             //Validate
+            //TODO: Fix type validate
             var validationResults = new ObjectValidator().TryValidateFullObject(movie);
             if (validationResults.Count() > 0)
             {
