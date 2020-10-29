@@ -1,4 +1,9 @@
-﻿using System;
+﻿/*
+ * ITSE 1430
+ * Oscar Peinado-Rojo
+ * Lab 3
+*/
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;

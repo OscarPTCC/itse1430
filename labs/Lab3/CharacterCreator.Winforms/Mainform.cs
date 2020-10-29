@@ -1,4 +1,9 @@
-﻿using System;
+﻿/*
+ * ITSE 1430
+ * Oscar Peinado-Rojo
+ * Lab 3
+*/
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -16,9 +21,6 @@ namespace CharacterCreator.Winforms
         {
             InitializeComponent();
 
-            Character character;
-            character = new Character();
-
             _miFileExit.Click += OnExit;
             _miHelpAbout.Click += OnHelpAbout;
             _miCharacterNew.Click += OnCharacterNew;
@@ -26,40 +28,66 @@ namespace CharacterCreator.Winforms
             _miCharacterEdit.Click += OnCharacterEdit;
         }
 
-        public Character _character;
+        //protected override void OnLoad ( EventArgs e )
+        //{
+        //    base.OnLoad(e);
+
+        //    RefreshRoster();
+        //}
+
+        private ICharacterRoster _character = new CharacterRoster();
 
         private void OnCharacterEdit ( object sender, EventArgs e )
         {
-            if (_character == null)
+            Character character = GetSelectedCharacter();
+            if (character == null)
                 return;
 
-            var form = new Characterform(_character, "Edit Character");
+            Characterform form = new Characterform(character, "Edit Character");
 
-            var result = form.ShowDialog(this);
+            DialogResult result = form.ShowDialog(this);
             if (result == DialogResult.Cancel)
                 return;
 
-            _character = form.Character;
-
-            MessageBox.Show("Save successful!");
+            EditCharacter(character.Id, form.Character);
 
             RefreshRoster();
         }
 
+        private void EditCharacter ( int id, Character character)
+        {
+            string error = _character.Update(id, character);
+
+            if (String.IsNullOrEmpty(error))
+            {
+                RefreshRoster();
+                return;
+            };
+
+            MessageBox.Show(this, error, "Edit Character", MessageBoxButtons.OK);
+        }
+
         private void OnCharacterDelete ( object sender, EventArgs e )
         {
-            if (_character == null)
+            var character = GetSelectedCharacter();
+
+            if (character == null)
                 return;
 
-            switch (MessageBox.Show(this, "Are you sure you want to delete?", "Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Question))
+            switch (MessageBox.Show(this, $"Are you sure you want to delete '{character.Name}'?", "Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Question))
             {
                 case DialogResult.Yes: break;
                 case DialogResult.No: return;
             };
 
-            _character = null;
+            DeleteCharacter(character.Id);
 
             RefreshRoster();
+        }
+
+        private void DeleteCharacter ( int id )
+        {
+            _character.Delete(id);
         }
 
         private void OnCharacterNew ( object sender, EventArgs e )
@@ -70,11 +98,24 @@ namespace CharacterCreator.Winforms
             if (result == DialogResult.Cancel)
                 return;
 
-            _character = form.Character;
+            AddCharacter(form.Character);
 
             MessageBox.Show("Save successful!");
 
             RefreshRoster();
+        }
+
+        private void AddCharacter ( Character character )
+        {
+            var newCharacter = _character.Add(character, out string message);
+
+            if (newCharacter == null)
+            {
+                MessageBox.Show(this, message, "Add Failed", MessageBoxButtons.OK);
+                return;
+            };
+
+            return;
         }
 
         private void OnHelpAbout ( object sender, EventArgs e )
@@ -91,13 +132,13 @@ namespace CharacterCreator.Winforms
 
         private void RefreshRoster ()
         {
-            var roster = new BindingList<Character>();
+            _lstRoster.DataSource = null;
+            _lstRoster.DataSource = _character.GetAll();
+        }
 
-            roster.Add(_character);
-
-            _lstRoster.DataSource = roster;
-
-            _lstRoster.DisplayMember = "Name";
+        private Character GetSelectedCharacter ()
+        {
+            return _lstRoster.SelectedItem as Character;
         }
     }
 }

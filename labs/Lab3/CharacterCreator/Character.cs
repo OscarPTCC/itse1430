@@ -1,14 +1,16 @@
 ﻿/*
  * ITSE 1430
  * Oscar Peinado-Rojo
- * Lab 2 "Character Creator"
+ * Lab 3
 */
 using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace CharacterCreator
 {
     ///<summary>Represents a character</summary>
-    public class Character
+    public class Character : IValidatableObject
     {
         private string _name = "";
         private string _description = "";
@@ -42,6 +44,8 @@ namespace CharacterCreator
             get { return _race ?? ""; }
             set { _race = value; }
         }
+
+        public int Id { get; set; }
 
         /// <summary>The character's Strength stat</summary>
         /// <value>The maximum value is 40</value>
@@ -104,6 +108,11 @@ namespace CharacterCreator
                 return "HP value must be between 0 and 52";
 
             return null;
+        }
+
+        public IEnumerable<ValidationResult> Validate ( ValidationContext validationContext )
+        {
+            throw new NotImplementedException();
         }
     }
 }
