@@ -132,8 +132,7 @@ namespace CharacterCreator.Winforms
 
         private void RefreshRoster ()
         {
-            _lstRoster.DataSource = null;
-            _lstRoster.DataSource = _character.GetAll();
+            _lstRoster.DataSource = _character.GetAll().ToArray();
         }
 
         private Character GetSelectedCharacter ()

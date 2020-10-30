@@ -45,7 +45,6 @@ namespace CharacterCreator
         {
             foreach (var character in _character)
                 yield return CloneCharacter(character);
-            ;
         }
 
         public Character Get ( int id )

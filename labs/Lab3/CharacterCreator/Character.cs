@@ -110,6 +110,11 @@ namespace CharacterCreator
             return null;
         }
 
+        public override string ToString ()
+        {
+            return Name;
+        }
+
         public IEnumerable<ValidationResult> Validate ( ValidationContext validationContext )
         {
             throw new NotImplementedException();
