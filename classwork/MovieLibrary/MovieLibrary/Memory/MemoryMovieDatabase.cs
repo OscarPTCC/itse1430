@@ -53,7 +53,7 @@ namespace MovieLibrary.Memory
             #endregion
         }
 
-        protected override Movie FindByName ( string name )
+        protected override Movie GetByName ( string name )
         {
             foreach (var movie in _movies)
             {
@@ -64,9 +64,9 @@ namespace MovieLibrary.Memory
             return null;
         }
 
-        public void Delete ( int id )
+        protected override void DeleteCore ( int id )
         {
-            var movie = GetById(id);
+            var movie = FindById(id);
 
             if (movie != null)
             {
@@ -91,7 +91,7 @@ namespace MovieLibrary.Memory
 
         //Use IEnumerable<T> for readonly lists of items
         //public Movie[] GetAll ()
-        public IEnumerable<Movie> GetAll ()
+        protected override IEnumerable<Movie> GetAllCore ()
         {
             //Don't do this
             //  1. Expose underlying movie items
@@ -120,19 +120,19 @@ namespace MovieLibrary.Memory
             foreach (var movie in _movies) //relies on IEnumeration<T>
                 //    items[index++] = CloneMovie(movie);
                 yield return CloneMovie(movie);
-                ; 
 
             //return items;
         }
 
-        public Movie Get ( int id )
+        //public void Get()
+        protected override Movie GetByIdCore ( int id )
         {
-            var movie = GetById(id);
+            var movie = FindById(id);
 
             return (movie != null) ? CloneMovie(movie) : null;
         }
 
-        private Movie GetById ( int id )
+        private Movie FindById ( int id )
         {
             foreach (var movie in _movies)
             {
@@ -147,16 +147,10 @@ namespace MovieLibrary.Memory
             return null;
         }
 
-        public string Update ( int id, Movie movie )
+        protected override void UpdateCore ( int id, Movie movie )
         {
-            //TODO: Validate ID
-            //MOvie exists
-            var existing = GetById(id);
-            if (existing == null)
-                return "Movie not found";
-
-            //updated movie is valid
-            //updated movie name is unique
+            var existing = FindById(id);
+            
             CopyMovie(existing, movie);
 
             //for (var index = 0; index < _movies.Count; ++index)
@@ -171,8 +165,6 @@ namespace MovieLibrary.Memory
             //        return "";
             //    };
             //};
-
-            return "";
         }
 
         private Movie CloneMovie ( Movie movie )

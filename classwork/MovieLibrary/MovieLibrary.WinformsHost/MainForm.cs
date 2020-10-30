@@ -3,6 +3,8 @@ using System.ComponentModel;
 using System.Linq;
 using System.Windows.Forms;
 
+using MovieLibrary.Memory;
+
 namespace MovieLibrary.WinformsHost
 {
     public partial class MainForm : Form
@@ -36,7 +38,17 @@ namespace MovieLibrary.WinformsHost
         {
             base.OnLoad(e);
 
-            RefreshUI();
+            int count = RefreshUI();
+            if (count == 0)
+            {
+                if (MessageBox.Show(this, "No movies found. DO you want to add some example movies?", "Database Empty", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    var seed = new SeedMovieDatabase();
+                    seed.Seed(_movies);
+
+                    RefreshUI();
+                };
+            };
         }
 
         private void OnHelpAbout ( object sender, EventArgs e )
@@ -51,7 +63,7 @@ namespace MovieLibrary.WinformsHost
         //Array - T[] Array of movies
         //  Instance ::= new T[Ei]
         //  Index : 0 to size -1
-        private IMovieDatabase _movies = new MovieDatabase(); //0..99
+        private IMovieDatabase _movies = new MemoryMovieDatabase(); //0..99
         //private Movie[] _emptyMovies = new Movie[0]; //empty array and nulls equivalent, so always use empty array instead of null
 
         private void AddMovie ( Movie movie )
@@ -119,13 +131,17 @@ namespace MovieLibrary.WinformsHost
             MessageBox.Show(this, error, "Edit Movie", MessageBoxButtons.OK);
         }
 
-        private void RefreshUI ()
+        private int RefreshUI ()
         {
-            _lstMovies.DataSource = _movies.GetAll().ToArray();
+            var items = _movies.GetAll().ToArray();
+
+            _lstMovies.DataSource = items;
             //_lstMovies.DisplayMember = nameof(Movie.Name); //"Name"
-            
+
             //_lstMovies.DataSource = null;
             //_lstMovies.DataSource = _movies.GetAll();
+
+            return items.Length;
         }
 
         private Movie GetSelectedMovie ()
