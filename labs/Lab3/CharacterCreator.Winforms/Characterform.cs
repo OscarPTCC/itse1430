@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
@@ -51,7 +52,9 @@ namespace CharacterCreator.Winforms
                 _txtSpeed.Text = Character.Speed.ToString();
                 _txtLuck.Text = Character.Luck.ToString();
                 _txtDefense.Text = Character.Defense.ToString();
-            }
+            };
+
+            ValidateChildren();
         }
 
         private void OnCancel ( object sender, EventArgs e )
@@ -61,7 +64,13 @@ namespace CharacterCreator.Winforms
 
         private void OnSave ( object sender, EventArgs e )
         {
-            Character character = new Character();
+            if (!ValidateChildren())
+            {
+                DialogResult = DialogResult.None;
+                return;
+            }
+
+            var character = new Character();
             character.Name = _txtName.Text;
             character.Profession = _comboProfession.Text;
             character.Race = _comboBoxRace.Text;
@@ -75,15 +84,19 @@ namespace CharacterCreator.Winforms
             character.Luck = ReadInt32(_txtLuck);
             character.Defense = ReadInt32(_txtDefense);
 
-            string error = character.Validate();
-
-            if (!String.IsNullOrEmpty(error))
+            var validationResults = new ObjectValidator().TryValidateFullObject(character);
+            if (validationResults.Count() > 0)
             {
-                MessageBox.Show(this, error, "Save Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                DialogResult = DialogResult.None;
+                var builder = new System.Text.StringBuilder();
+                foreach (var result in validationResults)
+                {
+                    builder.AppendLine(result.ErrorMessage);
+                };
+
+                MessageBox.Show(this, builder.ToString(), "Save Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             };
-
+            
             Character = character;
 
             Close();
@@ -143,7 +156,7 @@ namespace CharacterCreator.Winforms
 
             if (value < 0 || value > 52)
             {
-                _error.SetError(control, "HP is required");
+                _error.SetError(control, "HP must be between 0 and 52");
                 e.Cancel = true;
             } else
                 _error.SetError(control, "");
@@ -157,7 +170,7 @@ namespace CharacterCreator.Winforms
 
             if (value < 0 || value > 40)
             {
-                _error.SetError(control, "Strength is required");
+                _error.SetError(control, "Strength must be between 0 and 40");
                 e.Cancel = true;
             } else
                 _error.SetError(control, "");
@@ -171,7 +184,7 @@ namespace CharacterCreator.Winforms
 
             if (value < 0 || value > 40)
             {
-                _error.SetError(control, "Magic is required");
+                _error.SetError(control, "Magic must be between 0 and 40");
                 e.Cancel = true;
             } else
                 _error.SetError(control, "");
@@ -185,7 +198,7 @@ namespace CharacterCreator.Winforms
 
             if (value < 0 || value > 40)
             {
-                _error.SetError(control, "Skill is required");
+                _error.SetError(control, "Skill must be between 0 and 40");
                 e.Cancel = true;
             } else
                 _error.SetError(control, "");
@@ -199,7 +212,7 @@ namespace CharacterCreator.Winforms
 
             if (value < 0 || value > 40)
             {
-                _error.SetError(control, "Speed is required");
+                _error.SetError(control, "Speed must be between 0 and 40");
                 e.Cancel = true;
             } else
                 _error.SetError(control, "");
@@ -213,7 +226,7 @@ namespace CharacterCreator.Winforms
 
             if (value < 0 || value > 40)
             {
-                _error.SetError(control, "Luck is required");
+                _error.SetError(control, "Luck must be between 0 and 40");
                 e.Cancel = true;
             } else
                 _error.SetError(control, "");
@@ -227,7 +240,7 @@ namespace CharacterCreator.Winforms
 
             if (value < 0 || value > 40)
             {
-                _error.SetError(control, "Defense is required");
+                _error.SetError(control, "Defense must be between 0 and 40");
                 e.Cancel = true;
             } else
                 _error.SetError(control, "");

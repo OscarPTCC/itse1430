@@ -28,12 +28,12 @@ namespace CharacterCreator.Winforms
             _miCharacterEdit.Click += OnCharacterEdit;
         }
 
-        //protected override void OnLoad ( EventArgs e )
-        //{
-        //    base.OnLoad(e);
+        protected override void OnLoad ( EventArgs e )
+        {
+            base.OnLoad(e);
 
-        //    RefreshRoster();
-        //}
+            RefreshRoster();
+        }
 
         private ICharacterRoster _character = new CharacterRoster();
 
@@ -99,8 +99,6 @@ namespace CharacterCreator.Winforms
                 return;
 
             AddCharacter(form.Character);
-
-            MessageBox.Show("Save successful!");
 
             RefreshRoster();
         }

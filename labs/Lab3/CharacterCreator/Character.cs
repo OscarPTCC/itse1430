@@ -75,40 +75,44 @@ namespace CharacterCreator
         /// <value>The maximum value is 52</value>
         public int HP { get; set; } = 20;
 
-        public string Validate ()
-        {
-            if (String.IsNullOrEmpty(Name))
-                return "Name is required";
+        public const int MaxStat = 40;
+        public const int MinimumStat = 0;
+        public const int MaxHP = 52;
 
-            if (String.IsNullOrEmpty(Profession))
-                return "Profession is required";
+        //public string Validate ()
+        //{
+        //    if (String.IsNullOrEmpty(Name))
+        //        return "Name is required";
 
-            if (String.IsNullOrEmpty(Race))
-                return "Race is required";
+        //    if (String.IsNullOrEmpty(Profession))
+        //        return "Profession is required";
 
-            if (Strength < 0 || Strength > 40)
-                return "Strength value must be between 0 and 40";
+        //    if (String.IsNullOrEmpty(Race))
+        //        return "Race is required";
 
-            if (Magic < 0 || Magic > 40)
-                return "Magic value must be between 0 and 40";
+        //    if (Strength < 0 || Strength > 40)
+        //        return "Strength value must be between 0 and 40";
 
-            if (Skill < 0 || Skill > 40)
-                return "Skill value must be between 0 and 40";
+        //    if (Magic < 0 || Magic > 40)
+        //        return "Magic value must be between 0 and 40";
 
-            if (Speed < 0 || Speed > 40)
-                return "Speed value must be between 0 and 40";
+        //    if (Skill < 0 || Skill > 40)
+        //        return "Skill value must be between 0 and 40";
 
-            if (Luck < 0 || Luck > 40)
-                return "Luck value must be between 0 and 40";
+        //    if (Speed < 0 || Speed > 40)
+        //        return "Speed value must be between 0 and 40";
 
-            if (Defense < 0 || Defense > 40)
-                return "Defense value must be between 0 and 40";
+        //    if (Luck < 0 || Luck > 40)
+        //        return "Luck value must be between 0 and 40";
 
-            if (HP < 0 || HP > 52)
-                return "HP value must be between 0 and 52";
+        //    if (Defense < 0 || Defense > 40)
+        //        return "Defense value must be between 0 and 40";
 
-            return null;
-        }
+        //    if (HP < 0 || HP > 52)
+        //        return "HP value must be between 0 and 52";
+
+        //    return null;
+        //}
 
         public override string ToString ()
         {
@@ -117,7 +121,31 @@ namespace CharacterCreator
 
         public IEnumerable<ValidationResult> Validate ( ValidationContext validationContext )
         {
-            throw new NotImplementedException();
+            if (String.IsNullOrEmpty(Name))
+                yield return new ValidationResult("Name is required", new[] { nameof(Name) });
+            if (String.IsNullOrEmpty(Profession))
+                yield return new ValidationResult("Profession is required", new[] { nameof(Profession) });
+            if (String.IsNullOrEmpty(Race))
+                yield return new ValidationResult("Race is required", new[] { nameof(Race) });
+            if (HP <= MinimumStat || HP >= MaxHP)
+                yield return new ValidationResult($"HP must be between '{MinimumStat}' and '{MaxHP}'", new[] { nameof(HP) });
+            if (!AttributeValidation(Strength))
+                yield return new ValidationResult($"Strength must be between '{MinimumStat}' and '{MaxStat}'", new[] { nameof(Strength) });
+            if (!AttributeValidation(Magic))
+                yield return new ValidationResult($"Magic must be between '{MinimumStat}' and '{MaxStat}'", new[] { nameof(Magic) });
+            if (!AttributeValidation(Skill))
+                yield return new ValidationResult($"Skill must be between '{MinimumStat}' and '{MaxStat}'", new[] { nameof(Skill) });
+            if (!AttributeValidation(Speed))
+                yield return new ValidationResult($"Speed must be between '{MinimumStat}' and '{MaxStat}'", new[] { nameof(Speed) });
+            if (!AttributeValidation(Luck))
+                yield return new ValidationResult($"Luck must be between '{MinimumStat}' and '{MaxStat}'", new[] { nameof(Luck) });
+            if (!AttributeValidation(Defense))
+                yield return new ValidationResult($"Defense must be between '{MinimumStat}' and '{MaxStat}'", new[] { nameof(Defense) });
+        }
+
+        private bool AttributeValidation ( int stat )
+        {
+            return (stat >= MinimumStat) && (stat <= MaxStat);
         }
     }
 }
