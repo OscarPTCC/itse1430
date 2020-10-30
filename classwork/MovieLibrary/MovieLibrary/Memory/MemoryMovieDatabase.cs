@@ -6,12 +6,8 @@ namespace MovieLibrary.Memory
 {
     public class MemoryMovieDatabase : MovieDatabase
     {
-        public Movie Add ( Movie movie, out string error )
+        protected override Movie AddCore ( Movie movie )
         {
-            //TODO: Movie is valid
-            // Movie name is unique
-            error = "";
-
             //Clone so agument can be modified without impacting our array
             var item = CloneMovie(movie);
 
@@ -55,6 +51,17 @@ namespace MovieLibrary.Memory
             //error = "No more room";
             //return null;
             #endregion
+        }
+
+        protected override Movie FindByName ( string name )
+        {
+            foreach (var movie in _movies)
+            {
+                if (String.Compare(movie.Name, name, true) == 0)
+                    return CloneMovie(movie);
+            };
+
+            return null;
         }
 
         public void Delete ( int id )

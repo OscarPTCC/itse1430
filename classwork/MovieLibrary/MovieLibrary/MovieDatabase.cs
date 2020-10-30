@@ -1,10 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace MovieLibrary
 {
-    public class MovieDatabase : IMovieDatabase
+    //Abstract class required if any member is abstract
+    // 1. Cannot be instantiated
+    // 2. Must be derived
+    // 3. Must implement all abstract members
+    public abstract class MovieDatabase : IMovieDatabase
     {
         //Default constructor to seed database
         protected MovieDatabase ()
@@ -81,23 +86,27 @@ namespace MovieLibrary
 
         public Movie Add ( Movie movie, out string error )
         {
+            var results = new ObjectValidator().TryValidateFullObject(movie);
+            if (results.Count() > 0)
+            {
+                foreach (var result in results)
+                { 
+                    error = result.ErrorMessage;
+                    return null;
+                };
+            };
+
             //TODO: Movie is valid
             // Movie name is unique
-            error = "";
+            var existing = FindByName(movie.Name);
+            if (existing != null)
+            {
+                error = "Movie must be unique";
+                return null;
+            };
 
-            //Clone so agument can be modified without impacting our array
-            var item = CloneMovie(movie);
-
-            //Set unique ID
-            item.Id = _id++;
-
-            //Add movie to array
-            _movies.Add(item);
-
-            //Set ID on original object and return
-            movie.Id = item.Id;
-            return movie;
-
+            error = null;
+            return AddCore(movie);
             #region Array Code
             //Find first empty spot in array
             //  for ( EI; EC; EU )
@@ -128,6 +137,19 @@ namespace MovieLibrary
             //error = "No more room";
             //return null;
             #endregion
+        }
+
+        protected abstract Movie AddCore ( Movie movie );
+
+        protected virtual Movie FindByName ( string name )
+        {
+            foreach (var movie in GetAll())
+            {
+                if (String.Compare(movie.Name, name, true) == 0)
+                    return movie;
+            };
+
+            return null;
         }
 
         public void Delete ( int id )
@@ -241,30 +263,10 @@ namespace MovieLibrary
             return "";
         }
 
-        private Movie CloneMovie ( Movie movie )
-        {
-            var item = new Movie();
-            item.Id = movie.Id;
-
-            CopyMovie(item, movie);
-
-            return item;
-        }
-
-        private void CopyMovie ( Movie target, Movie source )
-        {
-            target.Id = source.Id;
-            target.Name = source.Name;
-            target.Rating = source.Rating;
-            target.ReleaseYear = source.ReleaseYear;
-            target.RunLength = source.RunLength;
-            target.IsClassic = source.IsClassic;
-            target.Description = source.Description;
-        }
         //Only store closed copies of movies here!!
         //private Movie[] _movies = new Movie[100];
-        private List<Movie> _movies = new List<Movie>();
-        private int _id = 1;
+
+       
 
         //Generic Types
         //  List<T> where T is any type
