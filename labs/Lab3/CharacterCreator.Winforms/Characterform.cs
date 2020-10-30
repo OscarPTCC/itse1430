@@ -156,94 +156,29 @@ namespace CharacterCreator.Winforms
 
             if (value < 0 || value > 52)
             {
-                _error.SetError(control, "HP must be between 0 and 52");
+                _error.SetError(control, $"Stat must be between '{Character.MinimumStat}' and '{Character.MaxHP}'");
                 e.Cancel = true;
             } else
                 _error.SetError(control, "");
         }
 
-        private void OnValidateStrength ( object sender, CancelEventArgs e )
+        private void OnValidateStat ( object sender, CancelEventArgs e )
         {
             TextBox control = sender as TextBox;
-
+            
             int value = ReadInt32(control);
 
-            if (value < 0 || value > 40)
+            if (!OnValidateAttribute(value))
             {
-                _error.SetError(control, "Strength must be between 0 and 40");
+                _error.SetError(control, $"Stat must be between '{Character.MinimumStat}' and '{Character.MaxStat}'");
                 e.Cancel = true;
             } else
                 _error.SetError(control, "");
         }
 
-        private void OnValidateMagic ( object sender, CancelEventArgs e )
+        private bool OnValidateAttribute ( int stat )
         {
-            TextBox control = sender as TextBox;
-
-            int value = ReadInt32(control);
-
-            if (value < 0 || value > 40)
-            {
-                _error.SetError(control, "Magic must be between 0 and 40");
-                e.Cancel = true;
-            } else
-                _error.SetError(control, "");
-        }
-
-        private void OnValidateSkill ( object sender, CancelEventArgs e )
-        {
-            TextBox control = sender as TextBox;
-
-            int value = ReadInt32(control);
-
-            if (value < 0 || value > 40)
-            {
-                _error.SetError(control, "Skill must be between 0 and 40");
-                e.Cancel = true;
-            } else
-                _error.SetError(control, "");
-        }
-
-        private void OnValidateSpeed ( object sender, CancelEventArgs e )
-        {
-            TextBox control = sender as TextBox;
-
-            int value = ReadInt32(control);
-
-            if (value < 0 || value > 40)
-            {
-                _error.SetError(control, "Speed must be between 0 and 40");
-                e.Cancel = true;
-            } else
-                _error.SetError(control, "");
-        }
-
-        private void OnValidateLuck ( object sender, CancelEventArgs e )
-        {
-            TextBox control = sender as TextBox;
-
-            int value = ReadInt32(control);
-
-            if (value < 0 || value > 40)
-            {
-                _error.SetError(control, "Luck must be between 0 and 40");
-                e.Cancel = true;
-            } else
-                _error.SetError(control, "");
-        }
-
-        private void OnValidateDefense ( object sender, CancelEventArgs e )
-        {
-            TextBox control = sender as TextBox;
-
-            int value = ReadInt32(control);
-
-            if (value < 0 || value > 40)
-            {
-                _error.SetError(control, "Defense must be between 0 and 40");
-                e.Cancel = true;
-            } else
-                _error.SetError(control, "");
+            return (stat >= Character.MinimumStat) && (stat <= Character.MaxStat);
         }
     }
 }

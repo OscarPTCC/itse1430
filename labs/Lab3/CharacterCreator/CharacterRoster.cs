@@ -5,106 +5,90 @@
 */
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace CharacterCreator
 {
-    public class CharacterRoster : ICharacterRoster
+    public abstract class CharacterRoster : ICharacterRoster
     {
-        public CharacterRoster ()
-        {
-           
-        }
-
         public Character Add ( Character character, out string error )
         {
-            error = "";
+            var results = new ObjectValidator().TryValidateFullObject(character);
+            if (results.Count() > 0)
+            {
+                foreach (var result in results)
+                {
+                    error = result.ErrorMessage;
+                    return null;
+                };
+            };
 
-            Character item = CloneCharacter(character);
+            var existing = GetByName(character.Name);
+            if (existing != null)
+            {
+                error = "Character name must be unique";
+                return null;
+            };
 
-            item.Id = _id++;
-
-            _character.Add(item);
-
-            character.Id = item.Id;
-
-            return character;
+            error = null;
+            return AddCore(character);
         }
 
         public void Delete ( int id )
         {
-            var character = GetById(id);
-
-            if (character != null)
-            {
-                _character.Remove(character);
-            };
+            DeleteCore(id);
         }
 
         public IEnumerable<Character> GetAll ()
         {
-            foreach (var character in _character)
-                yield return CloneCharacter(character);
+            return GetAllCore();
         }
 
         public Character Get ( int id )
         {
-            var character = GetById(id);
-
-            return (character != null) ? CloneCharacter(character) : null;
+            return GetByIdCore(id);
         }
 
-        private Character GetById ( int id )
+        public string Update ( int id, Character character )
         {
-            foreach (var character in _character)
+            var results = new ObjectValidator().TryValidateFullObject(character);
+            if (results.Count() > 0)
             {
-                if (character?.Id == id)
+                foreach (var result in results)
+                {
+                    return result.ErrorMessage;
+                };
+            };
+
+            var existing = GetByName(character.Name);
+            if (existing != null && existing.Id != id)
+                return "Character must be unique";
+
+            UpdateCore(id, character);
+
+            return "";
+        }
+
+        protected virtual Character GetByName ( string name )
+        {
+            foreach (var character in GetAll())
+            {
+                if (String.Compare(character.Name, name, true) == 0)
                     return character;
             };
 
             return null;
         }
 
-        public string Update ( int id, Character character )
-        {
-            var existing = GetById(id);
+        protected abstract Character AddCore ( Character character );
 
-            if (existing == null)
-                return "Character not found";
+        protected abstract void DeleteCore ( int id );
 
-            CopyCharacter(existing, character);
+        protected abstract IEnumerable<Character> GetAllCore ();
 
-            return "";
-        }
+        protected abstract Character GetByIdCore ( int id );
 
-        private Character CloneCharacter ( Character character )
-        {
-            var item = new Character();
-
-            item.Id = character.Id;
-
-            CopyCharacter(item, character);
-
-            return item;
-        }
-
-        private void CopyCharacter ( Character target, Character source )
-        {
-            target.Id = source.Id;
-            target.Name = source.Name;
-            target.Profession = source.Profession;
-            target.Race = source.Race;
-            target.Description = source.Description;
-            target.HP = source.HP;
-            target.Strength = source.Strength;
-            target.Magic = source.Magic;
-            target.Skill = source.Skill;
-            target.Speed = source.Speed;
-            target.Luck = source.Luck;
-            target.Defense = source.Defense;
-        }
-
-        private List<Character> _character = new List<Character>();
-        private int _id = 1;
+        protected abstract void UpdateCore ( int id, Character character );
     }
 }

@@ -127,7 +127,7 @@ namespace CharacterCreator
                 yield return new ValidationResult("Profession is required", new[] { nameof(Profession) });
             if (String.IsNullOrEmpty(Race))
                 yield return new ValidationResult("Race is required", new[] { nameof(Race) });
-            if (HP <= MinimumStat || HP >= MaxHP)
+            if (HP < MinimumStat || HP > MaxHP)
                 yield return new ValidationResult($"HP must be between '{MinimumStat}' and '{MaxHP}'", new[] { nameof(HP) });
             if (!AttributeValidation(Strength))
                 yield return new ValidationResult($"Strength must be between '{MinimumStat}' and '{MaxStat}'", new[] { nameof(Strength) });

@@ -12,6 +12,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using CharacterCreator.Memory;
 
 namespace CharacterCreator.Winforms
 {
@@ -35,7 +36,7 @@ namespace CharacterCreator.Winforms
             RefreshRoster();
         }
 
-        private ICharacterRoster _character = new CharacterRoster();
+        private ICharacterRoster _character = new MemoryCharacterRoster();
 
         private void OnCharacterEdit ( object sender, EventArgs e )
         {

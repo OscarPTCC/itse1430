@@ -215,7 +215,7 @@
             this._txtStrength.Size = new System.Drawing.Size(100, 23);
             this._txtStrength.TabIndex = 4;
             this._txtStrength.Text = "6";
-            this._txtStrength.Validating += new System.ComponentModel.CancelEventHandler(this.OnValidateStrength);
+            this._txtStrength.Validating += new System.ComponentModel.CancelEventHandler(this.OnValidateStat);
             // 
             // _txtMagic
             // 
@@ -224,7 +224,7 @@
             this._txtMagic.Size = new System.Drawing.Size(100, 23);
             this._txtMagic.TabIndex = 5;
             this._txtMagic.Text = "6";
-            this._txtMagic.Validating += new System.ComponentModel.CancelEventHandler(this.OnValidateMagic);
+            this._txtMagic.Validating += new System.ComponentModel.CancelEventHandler(this.OnValidateStat);
             // 
             // _txtSkill
             // 
@@ -233,7 +233,7 @@
             this._txtSkill.Size = new System.Drawing.Size(100, 23);
             this._txtSkill.TabIndex = 7;
             this._txtSkill.Text = "6";
-            this._txtSkill.Validating += new System.ComponentModel.CancelEventHandler(this.OnValidateSkill);
+            this._txtSkill.Validating += new System.ComponentModel.CancelEventHandler(this.OnValidateStat);
             // 
             // _txtLuck
             // 
@@ -242,7 +242,7 @@
             this._txtLuck.Size = new System.Drawing.Size(100, 23);
             this._txtLuck.TabIndex = 9;
             this._txtLuck.Text = "6";
-            this._txtLuck.Validating += new System.ComponentModel.CancelEventHandler(this.OnValidateLuck);
+            this._txtLuck.Validating += new System.ComponentModel.CancelEventHandler(this.OnValidateStat);
             // 
             // _txtSpeed
             // 
@@ -251,7 +251,7 @@
             this._txtSpeed.Size = new System.Drawing.Size(100, 23);
             this._txtSpeed.TabIndex = 8;
             this._txtSpeed.Text = "6";
-            this._txtSpeed.Validating += new System.ComponentModel.CancelEventHandler(this.OnValidateSpeed);
+            this._txtSpeed.Validating += new System.ComponentModel.CancelEventHandler(this.OnValidateStat);
             // 
             // _txtDefense
             // 
@@ -260,7 +260,7 @@
             this._txtDefense.Size = new System.Drawing.Size(100, 23);
             this._txtDefense.TabIndex = 10;
             this._txtDefense.Text = "6";
-            this._txtDefense.Validating += new System.ComponentModel.CancelEventHandler(this.OnValidateDefense);
+            this._txtDefense.Validating += new System.ComponentModel.CancelEventHandler(this.OnValidateStat);
             // 
             // _btnSave
             // 

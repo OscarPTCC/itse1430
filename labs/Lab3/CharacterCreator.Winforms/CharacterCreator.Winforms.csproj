@@ -5,7 +5,7 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <UseWindowsForms>true</UseWindowsForms>
     <Company>Oscar Peinado-Rojo</Company>
-    <Product>Character Creator</Product>
+    <Product>Character Creator Lab 3</Product>
     <PackageId>CharacterCreator.Winforms</PackageId>
     <Description>Course ITSE-1430</Description>
     <Authors>Oscar Peinado-Rojo</Authors>
