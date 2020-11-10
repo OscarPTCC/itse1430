@@ -161,6 +161,7 @@ namespace MovieLibrary.WinformsHost
 
             //Save movie
             AddMovie(form.Movie);
+            //AddMovie(null);
             RefreshUI();
         }
 

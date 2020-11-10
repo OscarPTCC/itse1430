@@ -25,7 +25,7 @@ namespace MovieLibrary
         /// <returns>The new movie.</returns>
         /// error: Movie is invalid
         /// error: Movie already exists
-        Movie Add ( Movie movie, out string error );
+        Movie Add ( Movie movie );
 
         /// <summary>Deletes a movie from the database.</summary>
         /// <param name="id">The movie to be deleted.</param>
@@ -35,6 +35,6 @@ namespace MovieLibrary
 
         IEnumerable<Movie> GetAll ();
 
-        string Update ( int id, Movie movie );
+        void Update ( int id, Movie movie );
     }
 }
