@@ -16,6 +16,7 @@ namespace MovieLibrary
 
         public Movie Add ( Movie movie )
         {
+            #region Exceptions
             //Exception type is the base type of all exceptions
             //Arguments should always fall with argument exceptions
             //Exceptions
@@ -32,6 +33,8 @@ namespace MovieLibrary
             //Throw an exception using throw expression
             //  throw-expression ::= throw E
             //      E must be an exception
+            #endregion
+
             //Movie is not null
             if (movie == null)
                 new ArgumentNullException(nameof(movie)); //Argument is null and it shouldn't be, pretty much all reference types
@@ -56,16 +59,23 @@ namespace MovieLibrary
             //    throw new InvalidOperationException("Movie must be unique");
 
             //throw expression ::= E ?? throw E
-            var existing = GetByName(movie.Name) ?? throw new InvalidOperationException("Movie must be unique");
-
+            var existing = GetByName(movie.Name);
+            if (existing != null)
+                throw new InvalidOperationException("Movie must be unique");
             //{
             //    error = "Movie must be unique";
             //    return null;
             //};
 
-            //error = null;
             //TODO: Generalize errors
-            return AddCore(movie);
+            try
+            {
+                return AddCore(movie);
+            } catch (Exception e)
+            {
+                //Throwing a new exception
+                throw new InvalidOperationException("Add Failed", e);
+            }
         }
 
         /// <summary>Adds a movie to the database.</summary>
@@ -98,7 +108,14 @@ namespace MovieLibrary
             if (id <= 0)
                 throw new ArgumentOutOfRangeException(nameof(id), "Id must be greater than zero");
 
-            DeleteCore(id);
+            //Generalize errors
+            try
+            {
+                DeleteCore(id);
+            } catch (Exception e)
+            {
+                throw new InvalidOperationException("Delete Failed", e);
+            };
 
             #region For Array
             //for (var index = 0; index < _movies.Count; ++index)
@@ -118,7 +135,14 @@ namespace MovieLibrary
         //public Movie[] GetAll ()
         public IEnumerable<Movie> GetAll ()
         {
-            return GetAllCore();
+            //Generalize errors
+            try
+            {
+                return GetAllCore();
+            } catch (Exception e)
+            {
+                throw new InvalidOperationException("GetAll Failed", e);
+            };
         }
 
         public Movie Get ( int id )
@@ -127,7 +151,14 @@ namespace MovieLibrary
             if (id <= 0)
                 throw new ArgumentOutOfRangeException(nameof(id), "Id must be greater than zero");
 
-            return GetByIdCore(id);
+            //Generalize errors
+            try
+            {
+                return GetByIdCore(id);
+            } catch (Exception e)
+            {
+                throw new InvalidOperationException("Get Failed", e);
+            };
         }
 
         public void Update ( int id, Movie movie )
@@ -155,7 +186,14 @@ namespace MovieLibrary
             if (existing != null && existing.Id != id)
                 throw new InvalidOperationException("Movie must be unique");
 
-            UpdateCore(id, movie);
+            //Generalize errors
+            try
+            {
+                UpdateCore(id, movie);
+            } catch (Exception e)
+            {
+                throw new InvalidOperationException("Update Failed", e);
+            };
         }
     }
 }

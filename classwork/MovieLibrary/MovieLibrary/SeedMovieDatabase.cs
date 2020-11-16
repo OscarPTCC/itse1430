@@ -33,7 +33,7 @@ namespace MovieLibrary
 
             //TODO: Fix error handling
             foreach (var item in items)
-                database.Add(item, out var error);
+                database.Add(item);
             #region seed database
             //Seed database
             // Object initialize - only usable on new operator
