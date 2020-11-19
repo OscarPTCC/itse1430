@@ -7,8 +7,15 @@ namespace MovieLibrary
     public static class SeedMovieDatabase
     {
         //Make static because it does not reference any instance data
-        public static void Seed ( IMovieDatabase database )
+        //Converting to an extension method
+        // 1. Must be in a static class
+        // 2. Must accept as a first parameter the type to extend
+        // 3. First parameter must be preceded by keyword "this"
+        // 4. (Optional) Change first parameter to "source"
+        public static void Seed ( this IMovieDatabase source )
         {
+            //Extension methods - DO NOT check for null
+
             //Not needed here
             //_movies.Clear();
 
@@ -34,7 +41,7 @@ namespace MovieLibrary
 
             //TODO: Fix error handling
             foreach (var item in items)
-                database.Add(item);
+                source.Add(item);
             #region seed database
             //Seed database
             // Object initialize - only usable on new operator

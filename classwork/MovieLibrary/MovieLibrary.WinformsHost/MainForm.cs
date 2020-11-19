@@ -44,7 +44,8 @@ namespace MovieLibrary.WinformsHost
                 {
                     //var seed = new SeedMovieDatabase();
                     //seed.Seed(_movies);
-                    SeedMovieDatabase.Seed(_movies);
+                    //SeedMovieDatabase.Seed(_movies);
+                    _movies.Seed();
 
                     RefreshUI();
                 };
@@ -63,7 +64,8 @@ namespace MovieLibrary.WinformsHost
         //Array - T[] Array of movies
         //  Instance ::= new T[Ei]
         //  Index : 0 to size -1
-        private IMovieDatabase _movies = new IO.FileMovieDatabase("movies.csv"); //0..99
+        private IMovieDatabase _movies = new Sql.SqlMovieDatabase(); //0..99
+        //private IMovieDatabase _movies = new IO.FileMovieDatabase("movies.csv");
         //private Movie[] _emptyMovies = new Movie[0]; //empty array and nulls equivalent, so always use empty array instead of null
 
         private void AddMovie ( Movie movie )
@@ -138,8 +140,16 @@ namespace MovieLibrary.WinformsHost
 
         private int RefreshUI ()
         {
+            //.ToArray -> extension method
+            //  Allows us to call a method like an instance method on a type that does not actually implement it
+            // Adding functionality to type
+            // 1. Open type and add new instance method - only works if you own the type
+            // 2. Inherit from type - if base type allows inheritance and you are OK using the derived type
+            // 3. Extension method - works with any type
             var items = _movies.GetAll().ToArray();
 
+            //Calling an extension method
+            // 1. Just like an instance method
             _lstMovies.DataSource = items;
             //_lstMovies.DisplayMember = nameof(Movie.Name); //"Name"
 
