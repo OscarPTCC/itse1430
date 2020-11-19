@@ -4,9 +4,10 @@ using System.Text;
 
 namespace MovieLibrary
 {
-    public class SeedMovieDatabase
+    public static class SeedMovieDatabase
     {
-        public void Seed ( IMovieDatabase database )
+        //Make static because it does not reference any instance data
+        public static void Seed ( IMovieDatabase database )
         {
             //Not needed here
             //_movies.Clear();

@@ -47,6 +47,7 @@ namespace MovieLibrary.IO
             var movies = GetAllCore();
             foreach (var movie in movies)
             {
+                //Static method
                 if (String.Compare(movie.Name, name, true) == 0)
                     return movie;
             };

@@ -18,7 +18,13 @@ namespace MovieLibrary
     //  Singular unless they represent a collection of things
     // [access] - class identifier { }
 
-    //doctags
+    //Static vs Instance members
+    // Instance members are tied to the instance they are called on
+    //      Fields - data in the instance (_Id, _name)
+    //      Methods - requires an instance to execute (instance.method()) (instance.ToString)
+    // Static members are global to all instances
+    //      Fields - equivalent to global variable
+    //      Methods - equivalent to global function, does not have Instance access nor a this parameter (Int32.TryParse)
     /// <summary>Represents a movie.</summary>
     /// <remarks>
     /// A paragraph of information.
