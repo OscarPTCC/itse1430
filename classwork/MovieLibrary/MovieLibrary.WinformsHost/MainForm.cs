@@ -40,7 +40,7 @@ namespace MovieLibrary.WinformsHost
             int count = RefreshUI();
             if (count == 0)
             {
-                if (MessageBox.Show(this, "No movies found. DO you want to add some example movies?", "Database Empty", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                if (MessageBox.Show(this, "No movies found. Do you want to add some example movies?", "Database Empty", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
                     var seed = new SeedMovieDatabase();
                     seed.Seed(_movies);

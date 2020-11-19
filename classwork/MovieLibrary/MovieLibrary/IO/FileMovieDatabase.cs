@@ -35,10 +35,10 @@ namespace MovieLibrary.IO
             };
 
             //Set unique ID
-            movie.Id = lastId++;
+            movie.Id = ++lastId;
             items.Add(movie);
 
-            SaveMovies(movies);
+            SaveMovies(items);
             return movie;
         }
 
@@ -56,37 +56,27 @@ namespace MovieLibrary.IO
 
         protected override void DeleteCore ( int id )
         {
-            var movie = FindById(id);
-
-            if (movie != null)
+            var movies = new List<Movie>(GetAllCore());
+            foreach (var movie in movies)
             {
-                //Must use same instance that is stored in the list so ref equality works
-                _movies.Remove(movie);
-
+                if (movie.Id == id)
+                {
+                    movies.Remove(movie);
+                    break;
+                };
             };
 
-            #region For Array
-            //for (var index = 0; index < _movies.Count; ++index)
-            //{
-            //Array element access - V[int]
-            //if (_movies[index] != null && _movies[index].Id == id)
-            //    if (_movies[index]?.Id == id) // null conditional ?. if instance != null access the member
-            //    {
-            //        _movies[index] = null;
-            //        return;
-            //    };
-            //};
-            #endregion
+            SaveMovies(movies);
         }
 
-        //Use IEnumerable<T> for readonly lists of items
-        //public Movie[] GetAll ()
+        
         protected override IEnumerable<Movie> GetAllCore ()
         {
             if (File.Exists(_filename))
             {
                 // Read file buffered as an array
-                var lines = File.ReadAllLines(_filename);
+                string[] lines = File.ReadAllLines(_filename);
+                //string rawText = File.ReadAllText(_filename)
 
                 foreach (var line in lines)
                 {
@@ -95,7 +85,7 @@ namespace MovieLibrary.IO
                         yield return movie;
                 };
 
-               
+
             };
         }
 
@@ -121,6 +111,38 @@ namespace MovieLibrary.IO
             return movie;
         }
 
+        private string EncloseQuotes ( string value )
+        {
+            return "\"" + value + "\"";
+        }
+
+        private string SaveMovie ( Movie movie )
+        {
+            //NOTE: No commas in string calues
+            //Id, "Name", "Description", "Rating", RunLength, ReleaseYear, IsClassic
+            var builder = new System.Text.StringBuilder();
+
+            builder.AppendFormat($"{movie.Id},");
+            builder.AppendFormat($"{EncloseQuotes(movie.Name)},");
+            builder.AppendFormat($"{EncloseQuotes(movie.Description)},");
+            builder.AppendFormat($"{EncloseQuotes(movie.Rating)},");
+            builder.AppendFormat($"{movie.RunLength},");
+            builder.AppendFormat($"{movie.ReleaseYear},");
+            builder.AppendFormat($"{(movie.IsClassic ? 1 : 0)}");
+
+            return builder.ToString();
+        }
+
+        private void SaveMovies ( IEnumerable<Movie> movies )
+        {
+            //Buffered writing
+            var lines = new List<string>();
+            foreach (var movie in movies)
+                lines.Add(SaveMovie(movie));
+
+            File.WriteAllLines(_filename, lines);
+        }
+
         private string RemoveQuotes ( string value )
         {
             return value.Trim('"');
@@ -129,9 +151,7 @@ namespace MovieLibrary.IO
         //public void Get()
         protected override Movie GetByIdCore ( int id )
         {
-            var movie = FindById(id);
-
-            return (movie != null) ? CloneMovie(movie) : null;
+           return FindById(id);
         }
 
         private Movie FindById ( int id )
@@ -150,51 +170,25 @@ namespace MovieLibrary.IO
 
         protected override void UpdateCore ( int id, Movie movie )
         {
-            var existing = FindById(id);
+            //Remove old movie
+            var items = new List<Movie>(GetAllCore());
+            foreach (var item in items)
+            {
+                //use items not movie
+                if (item.Id == id)
+                {
+                    //Must use item not movie
+                    items.Remove(item);
+                    break;
+                };
+            };
 
-            CopyMovie(existing, movie);
+            //Add new movie
+            movie.Id = id;
+            items.Add(movie);
 
-            //for (var index = 0; index < _movies.Count; ++index)
-            //{
-            //    if (_movies[index]?.Id == id)
-            //    {
-            //        //Clone it so we separate our value from argument
-            //        var item = CloneMovie(movie);
-
-            //        movie.Id = id;
-            //        _movies[index] = movie;
-            //        return "";
-            //    };
-            //};
+            SaveMovies(items);
         }
-
-        private Movie CloneMovie ( Movie movie )
-        {
-            var item = new Movie();
-            item.Id = movie.Id;
-
-            CopyMovie(item, movie);
-
-            return item;
-        }
-
-        private void CopyMovie ( Movie target, Movie source )
-        {
-            target.Id = source.Id;
-            target.Name = source.Name;
-            target.Rating = source.Rating;
-            target.ReleaseYear = source.ReleaseYear;
-            target.RunLength = source.RunLength;
-            target.IsClassic = source.IsClassic;
-            target.Description = source.Description;
-        }
-
-        //Only store closed copies of movies here!!
-        //private Movie[] _movies = new Movie[100];
-
-        private List<Movie> _movies = new List<Movie>();
-        private int _id = 1;
-
         //Generic Types
         //  List<T> where T is any type
         //Non-Generic
