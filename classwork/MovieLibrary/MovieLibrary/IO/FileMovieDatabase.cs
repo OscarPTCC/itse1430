@@ -56,20 +56,93 @@ namespace MovieLibrary.IO
 
         protected override void DeleteCore ( int id )
         {
-            var movies = new List<Movie>(GetAllCore());
-            foreach (var movie in movies)
-            {
-                if (movie.Id == id)
-                {
-                    movies.Remove(movie);
-                    break;
-                };
-            };
+            //Streaming approach
+            //Stream stream = File.OpenRead(_filename);
+            //StreamWriter writer = null;
+            var tempFilename = _filename + ".bak";
 
-            SaveMovies(movies);
+            //Using statment not declaration
+            // using (E) S
+            // E => IDisposable
+            // IDisposable is the interface that identifies a type as needing explicit cleanup
+            // void Dispose()
+
+            using (Stream stream = File.OpenRead(_filename))
+            using (var reader = new StreamReader(stream))
+            {
+                //stream.Dispose();
+
+                //Open temp file for writing - overwrite any existing file
+                using (var writer = new StreamWriter(tempFilename, false))
+                {
+                    //Keep reading until end of stream
+                    while (!reader.EndOfStream)
+                    {
+                        var line = reader.ReadLine();
+
+                        var movie = LoadMovie(line);
+
+                        //If not the movie, write out line to temp file
+                        if (movie?.Id != id)
+                            writer.WriteLine(line);
+                    };
+                };
+            };//stream.Close();
+              ////} finally
+              ////{
+              ////    writer?.Close();
+
+            ////    //Guaranteed to be called whether code completes or not
+            ////    stream.Close();
+            ////};
+
+            //Stream original file to temp file, excluding deleted movie
+            //    try
+            //{
+            //    //Open original file for reading
+            //    StreamReader reader = new StreamReader(stream);
+
+            //    //Open temp file for writing
+            //    writer = new StreamWriter(tempFilename, false);
+
+            //    //Keep reading until end of stream
+            //    while (!reader.EndOfStream)
+            //    {
+            //        var line = reader.ReadLine();
+
+            //        var movie = LoadMovie(line);
+
+            //        //If not the movie, write out line to temp file
+            //        if (movie?.Id != id)
+            //            writer.WriteLine(line);
+            //    };
+            //} finally
+            //{
+            //    writer?.Close();
+
+            //    //Guaranteed to be called whether code completes or not
+            //    stream.Close();
+            //};
+
+            //Swap temp file with original file
+            File.Copy(tempFilename, _filename, true);
+            File.Delete(tempFilename);
+
+            //Buffered Apporach
+            //var movies = new List<Movie>(GetAllCore());
+            //foreach (var movie in movies)
+            //{
+            //    if (movie.Id == id)
+            //    {
+            //        movies.Remove(movie);
+            //        break;
+            //    };
+            //};
+
+            //SaveMovies(movies);
         }
 
-        
+
         protected override IEnumerable<Movie> GetAllCore ()
         {
             if (File.Exists(_filename))
@@ -151,21 +224,59 @@ namespace MovieLibrary.IO
         //public void Get()
         protected override Movie GetByIdCore ( int id )
         {
-           return FindById(id);
+            return FindById(id);
         }
 
         private Movie FindById ( int id )
         {
-            //TODO: Make efficient
-            var movies = GetAllCore();
-
-            foreach (var movie in movies)
+            //Streaming approach
+            Stream stream = File.OpenRead(_filename);
+            try
             {
-                if (movie?.Id == id)
-                    return movie;
+
+                //OpenWrite(filename) //Opens a file for writing
+                //OpenText(filename) //Opens a text file for reading
+
+                //Stream = series of data (binary = byte, text = character)
+                // May be read, write, or seek (CanRead, CanWrite, CanSeek)
+                //stream.Read() Low Level
+
+                //Use reader/writer for working with streams, provides a cleaner API
+                StreamReader reader = new StreamReader(stream); //Reads text stream
+                                                                //BinaryReader reader; //For binary files
+
+                //Keep reading until end of stream or find movie
+                while (!reader.EndOfStream)
+                {
+                    var line = reader.ReadLine();
+
+                    var movie = LoadMovie(line);
+                    if (movie?.Id == id)
+                        return movie;
+                };
+
+                //Not exception safe
+                //stream.close();
+
+                return null;
+            } //catch blocks here 
+            finally
+            {
+                //Exception safe
+                //Guaranteed to be called whether code completes or not
+                stream.Close();
             };
 
-            return null;
+            //Buffered Approach
+            //var movies = GetAllCore();
+
+            //foreach (var movie in movies)
+            //{
+            //    if (movie?.Id == id)
+            //        return movie;
+            //};
+
+            //return null;
         }
 
         protected override void UpdateCore ( int id, Movie movie )
