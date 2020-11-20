@@ -3,6 +3,7 @@
  */
 using System;
 using System.ComponentModel;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace Nile.Windows
@@ -69,7 +70,18 @@ namespace Nile.Windows
                 IsDiscontinued = _chkDiscontinued.Checked,
             };
 
-            //TODO: Validate product
+            var validationResults = ObjectValidator.TryValidateFullObject(product);
+            if (validationResults.Count() > 0)
+            {
+                var builder = new System.Text.StringBuilder();
+                foreach (var result in validationResults)
+                {
+                    builder.AppendLine(result.ErrorMessage);
+                };
+
+                MessageBox.Show(this, builder.ToString(), "Save Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            };
 
             Product = product;
             DialogResult = DialogResult.OK;

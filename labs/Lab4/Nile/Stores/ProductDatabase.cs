@@ -3,6 +3,8 @@
  */
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Windows.Forms;
 
 namespace Nile.Stores
 {
@@ -16,7 +18,7 @@ namespace Nile.Stores
         {
             //TODO: Check arguments
 
-            //TODO: Validate product
+            ObjectValidator.ValidateFullObject(product);
 
             //Emulate database by storing copy
             return AddCore(product);
@@ -54,8 +56,8 @@ namespace Nile.Stores
         {
             //TODO: Check arguments
 
-            //TODO: Validate product
-
+            ObjectValidator.TryValidateFullObject(product);
+            
             //Get existing product
             var existing = GetCore(product.Id);
 
