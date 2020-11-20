@@ -9,7 +9,7 @@ namespace MovieLibrary.Sql
     public class SqlMovieDatabase : MovieDatabase
     {
 
-        public SqlMovieDatabase ( string connectionString)
+        public SqlMovieDatabase ( string connectionString )
         {
             //Should normally validate this...
             _connectionString = connectionString;
@@ -40,7 +40,7 @@ namespace MovieLibrary.Sql
                 connection.Open();
             };
 
-                return Enumerable.Empty<Movie>();
+            return Enumerable.Empty<Movie>();
         }
 
         //public Movie Get()
