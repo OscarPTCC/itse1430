@@ -16,7 +16,7 @@ namespace Nile.Windows
         }
         #endregion
 
-        protected override void OnLoad( EventArgs e )
+        protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
 
@@ -26,25 +26,40 @@ namespace Nile.Windows
         }
 
         #region Event Handlers
-        
-        private void OnFileExit( object sender, EventArgs e )
+
+        private void OnFileExit(object sender, EventArgs e)
         {
             Close();
         }
 
-        private void OnProductAdd( object sender, EventArgs e )
+        private void OnProductAdd(object sender, EventArgs e)
         {
             var child = new ProductDetailForm("Product Details");
-            if (child.ShowDialog(this) != DialogResult.OK)
-                return;
 
-            //TODO: Handle errors
-            //Save product
-            _database.Add(child.Product);
-            UpdateList();
+            do
+            {
+                if (child.ShowDialog(this) != DialogResult.OK)
+                    return;
+
+                try
+                {
+                    //Save product
+                    _database.Add(child.Product);
+                    UpdateList();
+                    return;
+                } catch (ArgumentNullException ex)
+                {
+                    MessageBox.Show(this, ex.Message, "Invalid Operation", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                } catch (Exception ex)
+                {
+                    MessageBox.Show(this, ex.Message, "Add Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    throw;
+                };
+
+            } while (true);
         }
 
-        private void OnProductEdit( object sender, EventArgs e )
+        private void OnProductEdit(object sender, EventArgs e)
         {
             var product = GetSelectedProduct();
             if (product == null)
@@ -54,18 +69,18 @@ namespace Nile.Windows
             };
 
             EditProduct(product);
-        }        
+        }
 
-        private void OnProductDelete( object sender, EventArgs e )
+        private void OnProductDelete(object sender, EventArgs e)
         {
             var product = GetSelectedProduct();
             if (product == null)
                 return;
 
             DeleteProduct(product);
-        }        
-                
-        private void OnEditRow( object sender, DataGridViewCellEventArgs e )
+        }
+
+        private void OnEditRow(object sender, DataGridViewCellEventArgs e)
         {
             var grid = sender as DataGridView;
 
@@ -80,7 +95,7 @@ namespace Nile.Windows
                 EditProduct(item);
         }
 
-        private void OnKeyDownGrid( object sender, KeyEventArgs e )
+        private void OnKeyDownGrid(object sender, KeyEventArgs e)
         {
             if (e.KeyCode != Keys.Delete)
                 return;
@@ -88,8 +103,8 @@ namespace Nile.Windows
             var product = GetSelectedProduct();
             if (product != null)
                 DeleteProduct(product);
-			
-			//Don't continue with key
+
+            //Don't continue with key
             e.SuppressKeyPress = true;
         }
 
@@ -97,33 +112,53 @@ namespace Nile.Windows
 
         #region Private Members
 
-        private void DeleteProduct ( Product product )
+        private void DeleteProduct(Product product)
         {
             //Confirm
             if (MessageBox.Show(this, $"Are you sure you want to delete '{product.Name}'?",
                                 "Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
                 return;
 
-            //TODO: Handle errors
-            //Delete product
-            _database.Remove(product.Id);
+            try
+            {
+                //Delete product
+                _database.Remove(product.Id);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(this, ex.Message, "Delete Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            };
+
             UpdateList();
         }
 
-        private void EditProduct ( Product product )
+        private void EditProduct(Product product)
         {
             var child = new ProductDetailForm("Product Details");
             child.Product = product;
             if (child.ShowDialog(this) != DialogResult.OK)
                 return;
 
-            //TODO: Handle errors
-            //Save product
-            _database.Update(child.Product);
+            try
+            {
+                //Save product
+                _database.Update(child.Product);
+            } catch (ArgumentNullException ex)
+            {
+                MessageBox.Show(this, ex.Message, "Bad Argument", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            } catch (InvalidOperationException ex)
+            {
+                MessageBox.Show(this, ex.Message, "Invalid Operation", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            } catch (Exception ex)
+            {
+                MessageBox.Show(this, ex.Message, "Edit Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                throw;
+            };
+
             UpdateList();
         }
 
-        private Product GetSelectedProduct ()
+        private Product GetSelectedProduct()
         {
             if (_gridProducts.SelectedRows.Count > 0)
                 return _gridProducts.SelectedRows[0].DataBoundItem as Product;
@@ -131,11 +166,15 @@ namespace Nile.Windows
             return null;
         }
 
-        private void UpdateList ()
+        private void UpdateList()
         {
-            //TODO: Handle errors
-
-            _bsProducts.DataSource = _database.GetAll();
+            try
+            {
+                _bsProducts.DataSource = _database.GetAll();
+            } catch
+            {
+                throw new InvalidOperationException("Products cannot be retrieved from the database");
+            };
         }
 
         private readonly IProductDatabase _database = new Nile.Stores.MemoryProductDatabase();
