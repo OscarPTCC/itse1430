@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("Nile.Windows")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("ITSE-1430 Fall 2020, Oscar Peinado-Rojo")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("TCCD")]
 [assembly: AssemblyProduct("Nile")]
