@@ -17,6 +17,8 @@ namespace Nile.Stores
         public Product Add ( Product product )
         {
             //TODO: Check arguments
+            if (product == null)
+               throw new ArgumentNullException(nameof(product));
 
             ObjectValidator.ValidateFullObject(product);
 
@@ -29,6 +31,8 @@ namespace Nile.Stores
         public Product Get ( int id )
         {
             //TODO: Check arguments
+            if (id < 0)
+                throw new ArgumentOutOfRangeException(nameof(id), "Id must be greater than or equal to zero");
 
             return GetCore(id);
         }
@@ -45,6 +49,8 @@ namespace Nile.Stores
         public void Remove ( int id )
         {
             //TODO: Check arguments
+            if (id < 0)
+                throw new ArgumentOutOfRangeException(nameof(id), "Id must be greater than or equal to zero");
 
             RemoveCore(id);
         }
@@ -55,11 +61,15 @@ namespace Nile.Stores
         public Product Update ( Product product )
         {
             //TODO: Check arguments
+            if (product == null)
+                throw new ArgumentNullException(nameof(product));
 
             ObjectValidator.TryValidateFullObject(product);
             
             //Get existing product
             var existing = GetCore(product.Id);
+            if (existing != null && existing.Id != product.Id)
+                throw new InvalidOperationException("Product must be unique");
 
             return UpdateCore(existing, product);
         }
