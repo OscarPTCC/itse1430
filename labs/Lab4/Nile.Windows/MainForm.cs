@@ -53,7 +53,6 @@ namespace Nile.Windows
                 } catch (Exception ex)
                 {
                     MessageBox.Show(this, ex.Message, "Add Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    throw;
                 };
 
             } while (true);
@@ -152,7 +151,6 @@ namespace Nile.Windows
             } catch (Exception ex)
             {
                 MessageBox.Show(this, ex.Message, "Edit Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                throw;
             };
 
             UpdateList();
