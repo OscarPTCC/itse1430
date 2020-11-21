@@ -4,10 +4,10 @@
  */
 using System;
 using System.Data;
-using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 
 namespace Nile.Stores.Sql
 {
@@ -28,7 +28,23 @@ namespace Nile.Stores.Sql
         /// <returns>The added product.</returns>
         protected override Product AddCore ( Product product )
         {
-            throw new NotImplementedException();
+            using (var connection = OpenConnection())
+            {
+                var command = connection.CreateCommand();
+                command.CommandText = "AddProduct";
+                command.CommandType = CommandType.StoredProcedure;
+
+                command.Parameters.AddWithValue("@Name", product.Name);
+                command.Parameters.AddWithValue("@Description", product.Description);
+                command.Parameters.AddWithValue("@Price", product.Price);
+                command.Parameters.AddWithValue("@IsDiscontinued", product.IsDiscontinued);
+
+                var result = command.ExecuteScalar();
+                var id = Convert.ToInt32(result);
+
+                product.Id = id;
+                return product;
+            };
         }
 
         /// <summary>Get a specific product.</summary>
@@ -47,6 +63,29 @@ namespace Nile.Stores.Sql
             using (var connection = OpenConnection())
             {
                 var command = new SqlCommand("GetAllProducts", connection);
+                command.CommandType = CommandType.StoredProcedure;
+
+                var da = new SqlDataAdapter() {
+                    SelectCommand = command
+                };
+
+                da.Fill(ds);
+            };
+
+            var table = ds.Tables.Count > 0 ? ds.Tables[0] : null;
+            if (table != null)
+            {
+                foreach (var row in table.Rows.OfType<DataRow>())
+                {
+                    yield return new Product() {
+                        Id = Convert.ToInt32(row[0]),
+                        Name = row["Name"].ToString(),
+                        Description = row["Description"].ToString(),
+                        Price = Convert.ToDecimal(row[3]),
+                        IsDiscontinued = Convert.ToBoolean(row[4]),
+                        
+                    };
+                };
             };
         }
 
@@ -77,6 +116,7 @@ namespace Nile.Stores.Sql
 
             conn.Open();
             return conn;
+        }
 
         private List<Product> _products = new List<Product>();
         private int _nextId = 1;

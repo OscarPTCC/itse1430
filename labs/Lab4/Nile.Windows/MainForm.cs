@@ -1,5 +1,6 @@
 /*
  * ITSE 1430
+ * Oscar Peinado-Rojo
  */
 using System;
 using System.Windows.Forms;

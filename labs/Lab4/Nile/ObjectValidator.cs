@@ -1,4 +1,8 @@
-﻿using System;
+﻿/*
+ * ITSE 1430
+ * Oscar Peinado-Rojo
+ */
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;

@@ -1,5 +1,6 @@
 /*
  * ITSE 1430
+ * Oscar Peinado-Rojo
  */
 using System;
 using System.Collections.Generic;
@@ -48,7 +49,13 @@ namespace Nile.Stores
         /// <returns>The products.</returns>
         public IEnumerable<Product> GetAll ()
         {
-            return GetAllCore();
+            try
+            {
+                return GetAllCore();
+            } catch (Exception e)
+            {
+                throw new InvalidOperationException("Get AllFailed", e);
+            };
         }
 
         /// <summary>Removes the product.</summary>
