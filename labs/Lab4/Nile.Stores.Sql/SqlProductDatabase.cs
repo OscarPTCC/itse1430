@@ -80,9 +80,9 @@ namespace Nile.Stores.Sql
                     yield return new Product() {
                         Id = Convert.ToInt32(row[0]),
                         Name = row["name"].ToString(),
-                        Description = row["description"].ToString(),
-                        Price = Convert.ToDecimal(row[3]),
-                        IsDiscontinued = Convert.ToBoolean(row[4]),
+                        Description = row.Field<string>("description"),
+                        Price = row.Field<decimal>("Price"),
+                        IsDiscontinued = row.Field<bool>("IsDiscontinued"),
                         
                     };
                 };
