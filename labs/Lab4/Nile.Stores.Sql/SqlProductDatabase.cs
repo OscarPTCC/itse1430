@@ -51,7 +51,32 @@ namespace Nile.Stores.Sql
         /// <returns>The product, if it exists.</returns>
         protected override Product GetCore ( int id )
         {
-            throw new NotImplementedException();
+            using (var connection = OpenConnection())
+            {
+                var command = connection.CreateCommand();
+                command.CommandText = "GetProduct";
+                command.CommandType = CommandType.StoredProcedure;
+
+                using (var reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        var productId = reader.GetInt32(0);
+                        if (productId == id)
+                        {
+                            return new Product() {
+                                Id = productId,
+                                Name = reader.GetString(1),
+                                Description = reader.GetString(2),
+                                Price = reader.GetFieldValue<decimal>(3),
+                                IsDiscontinued = reader.GetFieldValue<bool>(4),
+                            };
+                        };
+                    };
+                };
+            };
+
+            return null;
         }
 
         /// <summary>Gets all products.</summary>
@@ -93,7 +118,16 @@ namespace Nile.Stores.Sql
         /// <param name="product">The product to remove.</param>
         protected override void RemoveCore ( int id )
         {
-            throw new NotImplementedException();
+            using (var connection = OpenConnection())
+            {
+                var command = connection.CreateCommand();
+                command.CommandText = "RemoveProduct";
+                command.CommandType = CommandType.StoredProcedure;
+
+                command.Parameters.AddWithValue("@id", id);
+
+                command.ExecuteNonQuery();
+            };
         }
 
         /// <summary>Updates a product.</summary>
