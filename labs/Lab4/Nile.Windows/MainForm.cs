@@ -177,7 +177,7 @@ namespace Nile.Windows
         }
 
         private readonly IProductDatabase _database = new Stores.Sql.SqlProductDatabase(_connString);
-        private const string _connString = @"Data Source=(localdb)\ProjectsV13;Initial Catalog=NileDatabase;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False;";
+        private const string _connString = @"Data Source=(localdb)\ProjectsV13;Initial Catalog=NileDatabase;Integrated Security=SSPI;";
         #endregion
 
         private void HelpAbout(object sender, EventArgs e)

@@ -79,8 +79,8 @@ namespace Nile.Stores.Sql
                 {
                     yield return new Product() {
                         Id = Convert.ToInt32(row[0]),
-                        Name = row["Name"].ToString(),
-                        Description = row["Description"].ToString(),
+                        Name = row["name"].ToString(),
+                        Description = row["description"].ToString(),
                         Price = Convert.ToDecimal(row[3]),
                         IsDiscontinued = Convert.ToBoolean(row[4]),
                         
