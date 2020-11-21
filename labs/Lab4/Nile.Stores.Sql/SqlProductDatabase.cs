@@ -101,7 +101,20 @@ namespace Nile.Stores.Sql
         /// <returns>The updated product.</returns>
         protected override Product UpdateCore ( Product existing, Product product )
         {
-            throw new NotImplementedException();
+            using (var connection = OpenConnection())
+            {
+                var command = connection.CreateCommand();
+                command.CommandText = "UpdateProduct";
+                command.CommandType = CommandType.StoredProcedure;
+
+                command.Parameters.AddWithValue("@name", product.Name);
+                command.Parameters.AddWithValue("@description", product.Description);
+                command.Parameters.AddWithValue("@price", product.Price);
+                command.Parameters.AddWithValue("@isDiscontinued", product.IsDiscontinued);
+
+                command.ExecuteNonQuery();
+                return product;
+            };
         }
         
         //Find a product by ID
